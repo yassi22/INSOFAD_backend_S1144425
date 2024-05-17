@@ -50,10 +50,8 @@ public class ProductDAO {
                     productDTO.price,
                     category.get(),
                     productDTO.durability,
-                    productDTO.color,
                     productDTO.fitting,
                     productDTO.imageURL,
-                    productDTO.size,
                     productDTO.stock
             );
             this.productRepository.save(product);
