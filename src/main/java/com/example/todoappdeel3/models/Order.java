@@ -1,8 +1,10 @@
 package com.example.todoappdeel3.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -10,18 +12,32 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-    private String status;
+
+    private String orderTitle;
+
+    private double orderPrice;
+
+
     private LocalDate orderDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private CustomUser customUser;
 
+    @ManyToMany
+    @JsonManagedReference
+    private List<Product> product;
+
     public Order() {
 
     }
-    public Order(Long orderId) {
-        this.orderId = orderId;}
+
+    public Order(String orderTitle, double orderPrice, LocalDate orderDate, List<Product> product) {
+        this.orderTitle = orderTitle;
+        this.orderPrice = orderPrice;
+        this.orderDate = orderDate;
+        this.product = product;
+    }
 
     public CustomUser getCustomUser() {
         return customUser;
@@ -39,15 +55,6 @@ public class Order {
         this.orderId = orderId;
     }
 
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public LocalDate getOrderDate() {
         return orderDate;
     }
@@ -56,5 +63,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
+    public List<Product> getProduct() {
+        return product;
+    }
 
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
 }

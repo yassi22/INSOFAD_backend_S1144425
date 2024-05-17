@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -21,9 +22,9 @@ public class Product {
     private Integer stock;
     private boolean isFinished = false;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany
+    @JsonBackReference
+    private List<Order> order;
 
      /*
     Maps the many-to-one relationship between product and category, jsonbackreference so that we do not get an
@@ -41,8 +42,7 @@ public class Product {
 
 
     //needed by JPA to create the entity must be present no arg constructor
-    public Product(String name, String description, Number price, Category category, String durability, String color, String fitting, String imageURL, String size, Integer stock) {
-    }
+
     public Product() {
 
     }
@@ -56,7 +56,6 @@ public class Product {
         this.fitting = fitting;
         this.imageURL = imageURL;
         this.stock = stock;
-        this.isFinished = false;
     }
 
     //getters and setters are needed to map all the properties to the database by JPA, could
@@ -138,11 +137,11 @@ public class Product {
         isFinished = finished;
     }
 
-    public Order getOrder() {
+    public List<Order> getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(List<Order> order) {
         this.order = order;
     }
 
