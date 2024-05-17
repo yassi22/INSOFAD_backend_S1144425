@@ -2,6 +2,7 @@ package com.example.todoappdeel3.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -10,10 +11,20 @@ public class CustomUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private String firstname;
+
+    @NotNull
     private String lastname;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String password;
+
+    @NotNull
     private String role;
 
 
@@ -22,10 +33,13 @@ public class CustomUser {
     public CustomUser() {
     }
 
-    public CustomUser(String email, String password) {
+    public CustomUser(String email, String password, String role) {
         this.email = email;
         this.password = password;
+        this.role = role;
     }
+
+
 
     public String getFirstname() {
         return firstname;
@@ -51,9 +65,6 @@ public class CustomUser {
 //        this.orders = orders;
 //    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getEmail() {
         return email;
@@ -80,6 +91,10 @@ public class CustomUser {
     }
 
     public String getRole() {
-        return getRole();
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

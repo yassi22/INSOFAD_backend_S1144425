@@ -6,6 +6,7 @@ import com.example.todoappdeel3.dao.ProductRepository;
 import com.example.todoappdeel3.dto.ProductDTO;
 import com.example.todoappdeel3.models.Product;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,12 +41,15 @@ public class ProductController {
         }
         return ResponseEntity.ok(products);
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<String> createProduct(@RequestBody ProductDTO productDTO){
         this.productDAO.createProduct(productDTO);
         return ResponseEntity.ok("Created a product");
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
         this.productDAO.updateProduct(productDTO, id);
@@ -67,6 +71,7 @@ public class ProductController {
         return ResponseEntity.ok("Product uncheck with id " + id);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id){
         this.productDAO.deleteById(id);

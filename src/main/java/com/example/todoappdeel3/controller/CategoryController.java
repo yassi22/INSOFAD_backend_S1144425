@@ -5,6 +5,7 @@ import com.example.todoappdeel3.dao.CategoryDAO;
 import com.example.todoappdeel3.dto.CategoryDTO;
 import com.example.todoappdeel3.models.Category;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class CategoryController {
         return ResponseEntity.ok(this.categoryDAO.getAllCategories());
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<String> createCategory(@RequestBody CategoryDTO categoryDTO){
         this.categoryDAO.createCategory(categoryDTO);
