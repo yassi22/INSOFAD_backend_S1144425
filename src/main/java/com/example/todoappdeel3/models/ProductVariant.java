@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class ProductVariant {
 
@@ -21,6 +23,10 @@ public class ProductVariant {
     @JsonBackReference
     private Product product;
 
+
+    @OneToMany(mappedBy = "productVariant")
+    @JsonManagedReference
+    public Set<Options> options;
 
     public ProductVariant(String name, String description) {
         this.name = name;

@@ -145,4 +145,12 @@ public class Product {
     public void setOrder(Order order) {
         this.order = order;
     }
+
+    public Set<ProductVariant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(Set<ProductVariant> variants) {
+        this.variants = variants;
+    }
 }
