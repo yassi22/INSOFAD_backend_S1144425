@@ -1,6 +1,7 @@
 package com.example.todoappdeel3.controller;
 
 
+import com.example.todoappdeel3.dao.OrderDAO;
 import com.example.todoappdeel3.dto.OrderDTO;
 import com.example.todoappdeel3.models.CustomUser;
 import com.example.todoappdeel3.models.Order;
@@ -16,14 +17,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
+@CrossOrigin(origins = "http://localhost:4200")
 public class OrderController {
     private final OrderService orderService;
-    public OrderController(OrderService orderService, OrderServiceImpl orderServiceImpl) {
-        this.orderService = orderService;
-        this.orderServiceImpl = orderServiceImpl;
-    }
+
+    private final OrderDAO orderDAO;
 
     private final OrderServiceImpl orderServiceImpl;
+
+
+    public OrderController(OrderService orderService, OrderServiceImpl orderServiceImpl, OrderDAO orderDAO) {
+        this.orderService = orderService;
+        this.orderServiceImpl = orderServiceImpl;
+        this.orderDAO = orderDAO;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Order>> getAllOrders(){
+        return ResponseEntity.ok(orderDAO.getAllOrders());
+    }
 
     @PostMapping
     public Order placeOrder(@RequestBody OrderDTO orderDTO) {
@@ -39,4 +51,7 @@ public class OrderController {
         }
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
+
+
+
 }
