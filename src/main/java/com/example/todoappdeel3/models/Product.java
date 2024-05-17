@@ -1,7 +1,10 @@
 package com.example.todoappdeel3.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 
 @Entity
@@ -13,10 +16,8 @@ public class Product {
     private Number price;
     private String description;
     private String durability;
-    private String color;
     private String fitting;
     private String imageURL;
-    private String size;
     private Integer stock;
     private boolean isFinished = false;
 
@@ -33,6 +34,12 @@ public class Product {
     @JsonBackReference
     private Category category;
 
+
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference
+    public Set<ProductVariant> variants;
+
+
     //needed by JPA to create the entity must be present no arg constructor
     public Product(String name, String description, Number price, Category category, String durability, String color, String fitting, String imageURL, String size, Integer stock) {
     }
@@ -40,16 +47,14 @@ public class Product {
 
     }
 
-    public Product(String name, String description, double price, Category category, String durability, String color, String fitting, String imageURL, String size, int stock) {
+    public Product(String name, String description, double price, Category category, String durability, String fitting, String imageURL, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.color = color;
         this.category = category;
         this.durability = durability;
         this.fitting = fitting;
         this.imageURL = imageURL;
-        this.size = size;
         this.stock = stock;
         this.isFinished = false;
     }
@@ -68,13 +73,6 @@ public class Product {
         this.durability = durability;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public String getFitting() {
         return fitting;
@@ -90,14 +88,6 @@ public class Product {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public Integer getStock() {

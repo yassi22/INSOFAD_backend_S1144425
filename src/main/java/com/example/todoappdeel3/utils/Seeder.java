@@ -30,7 +30,7 @@ public class Seeder {
 
     @EventListener
     public void seed(ContextRefreshedEvent event){
-        this.seedProducts();
+//        this.seedProducts();
         this.seedUser();
     }
 
@@ -43,9 +43,9 @@ public class Seeder {
         Category categoryOuterwear = new Category("Premium Outerwear");
 
 // Luxe producten definiëren
-        Product product1 = new Product("Cashmere Hoodie", "Crafted from 100% pure cashmere, this hoodie offers unparalleled softness and warmth, ideal for those who seek both comfort and luxury.", 400.00, categoryHoodies, "A+", "Black", "Tailored Fit", "imageURL", "One-size", 5);
-        Product product2 = new Product("Silk Hoodie", "Experience the smooth touch of pure silk with this hoodie, combining casual design with luxury fabric for a sophisticated, relaxed look.", 350.00, categoryHoodies, "A++", "Blue", "Tailored Fit", "imageURL", "One-size", 7);
-        Product product11 = new Product("White Wool Hoodie", "Made from fine wool, this white hoodie blends comfort with elegance, perfect for a subtle, stylish statement.", 320.00, categoryHoodies, "A++", "White", "Tailored Fit", "imageURL", "One-size", 8);
+        Product product1 = new Product("Cashmere Hoodie", "Crafted from 100% pure cashmere, this hoodie offers unparalleled softness and warmth, ideal for those who seek both comfort and luxury.", 400.00, categoryHoodies, "A+", "Tailored Fit", "imageURL", 5);
+        Product product2 = new Product("Silk Hoodie", "Experience the smooth touch of pure silk with this hoodie, combining casual design with luxury fabric for a sophisticated, relaxed look.", 350.00, categoryHoodies, "A++", "Tailored Fit", "imageURL", 7);
+        Product product11 = new Product("White Wool Hoodie", "Made from fine wool, this white hoodie blends comfort with elegance, perfect for a subtle, stylish statement.", 320.00, categoryHoodies, "A++",  "Tailored Fit", "imageURL" , 8);
 
         Product product3 = new Product("Italian Leather Pants", "Tailored from premium Italian leather, these pants offer a perfect blend of luxury and durability, tailored for the fashion-forward.", 700.00, categoryPants, "A+", "Black", "Slim Fit", "imageURL", "One-size", 1);
         Product product4 = new Product("Suede Cargo Pants", "Elevate your style with these soft suede cargo pants, offering both comfort and a bold fashion statement.", 650.00, categoryPants, "A+", "Sand", "Relaxed Fit", "imageURL", "One-size", 3);
