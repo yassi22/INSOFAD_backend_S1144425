@@ -68,4 +68,12 @@ public class ProductVariant {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public Set<Options> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Set<Options> options) {
+        this.options = options;
+    }
 }
