@@ -1,5 +1,6 @@
 package com.example.todoappdeel3.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -21,7 +22,7 @@ public class Order {
     private LocalDate orderDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private CustomUser customUser;
 
     @ManyToMany

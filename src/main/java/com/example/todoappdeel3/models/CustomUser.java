@@ -1,6 +1,7 @@
 package com.example.todoappdeel3.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
@@ -27,8 +28,12 @@ public class CustomUser {
     @NotNull
     private String role;
 
+    @OneToMany(mappedBy = "customUser")
+    @JsonManagedReference
+    private List<Order> orders;
 
-//    private List<Order> orders;
+
+
 
     public CustomUser() {
     }
@@ -96,5 +101,13 @@ public class CustomUser {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
