@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Order {
     private double orderPrice;
 
 
-    private LocalDate orderDate;
+    public LocalDateTime datum;
 
     @ManyToOne
     @JsonBackReference
@@ -33,10 +34,10 @@ public class Order {
 
     }
 
-    public Order(String orderTitle, double orderPrice, LocalDate orderDate, List<Product> product) {
+    public Order(String orderTitle, double orderPrice, LocalDateTime datum, List<Product> product) {
         this.orderTitle = orderTitle;
         this.orderPrice = orderPrice;
-        this.orderDate = orderDate;
+        this.datum = datum;
         this.product = product;
     }
 
@@ -56,12 +57,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public LocalDateTime getDatum() {
+        return datum;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public void setDatum(LocalDateTime datum) {
+        this.datum = datum;
     }
 
     public List<Product> getProduct() {

@@ -3,8 +3,8 @@ package com.example.todoappdeel3.dto;
 import java.util.List;
 
 public class OrderDTO {
-    private String email;
-    private List<Long> productIds;
+    public String email;
+    public List<Long> productIds;
 
 
     public OrderDTO(String email, List<Long> productIds) {

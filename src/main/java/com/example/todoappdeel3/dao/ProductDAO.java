@@ -28,6 +28,10 @@ public class ProductDAO {
         return this.productRepository.findAll();
     }
 
+    public List<Product> getProducts(List<Long> ids){
+        return this.productRepository.findAllById(ids);
+    }
+
     public List<Product> getAllProductsByCategory(long id){
         Optional<List<Product>> products =this.productRepository.findByCategoryId(id);
 
