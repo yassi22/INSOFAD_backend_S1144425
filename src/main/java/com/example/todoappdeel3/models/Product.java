@@ -14,7 +14,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private Number price;
+    private double price;
     private String description;
     private String durability;
     private String fitting;
@@ -117,9 +117,9 @@ public class Product {
         this.name = name;
     }
 
-    public Number getPrice() { return price; }
+    public double getPrice() { return price; }
 
-    public void setPrice(Number price) { this.price = price; }
+    public void setPrice(double price) { this.price = price; }
 
     public String getDescription() {
         return description;

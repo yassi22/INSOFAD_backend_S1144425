@@ -8,7 +8,7 @@ import java.util.Set;
 public class ProductDTO {
     public String name;
     public String description;
-    public double  price;
+    public double price;
     public String durability;
     public String fitting;
     public String imageURL;
@@ -17,7 +17,7 @@ public class ProductDTO {
     public long categoryId;
     public Set<ProductVariant> variants;
 
-    public ProductDTO(String name, String description, double price, String durability, String color, String fitting, String imageURL, String size, Integer stock, long categoryId,  Set<ProductVariant> variants) {
+    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageURL, Integer stock, long categoryId,  Set<ProductVariant> variants) {
         this.name = name;
         this.description = description;
         this.price = price;

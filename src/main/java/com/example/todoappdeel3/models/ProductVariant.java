@@ -28,9 +28,10 @@ public class ProductVariant {
     @JsonManagedReference
     public Set<Options> options;
 
-    public ProductVariant(String name, String description) {
+    public ProductVariant(String name, String description, Product product) {
         this.name = name;
         this.description = description;
+        this.product = product;
     }
 
     public ProductVariant(){
@@ -76,4 +77,5 @@ public class ProductVariant {
     public void setOptions(Set<Options> options) {
         this.options = options;
     }
+
 }
