@@ -6,6 +6,8 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+import com.example.todoappdeel3.dao.UserRepository;
+import com.example.todoappdeel3.models.CustomUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +19,18 @@ public class JWTUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    public String generateToken(String email) throws IllegalArgumentException, JWTCreationException {
+    private UserRepository userRepository;
 
+    public JWTUtil(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
+
+    public String generateToken(String email) throws IllegalArgumentException, JWTCreationException {
+        CustomUser customUser = userRepository.findByEmail(email);
         return JWT.create()
                 .withSubject("User Details")
                 .withClaim("email", email)
+                .withClaim("userId", customUser.getId())
                 .withIssuedAt(new Date())
                 .withExpiresAt(this.createExpirationDate())
                 .withIssuer("Lina Xu")

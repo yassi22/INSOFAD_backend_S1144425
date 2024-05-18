@@ -24,7 +24,7 @@ public class Order {
 
     @ManyToOne
     @JsonBackReference
-    private CustomUser customUser;
+    public CustomUser customUser;
 
     @ManyToMany
     @JsonManagedReference

@@ -30,7 +30,7 @@ public class CustomUser {
 
     @OneToMany(mappedBy = "customUser")
     @JsonManagedReference
-    private List<Order> orders;
+    public List<Order> orders;
 
 
 
