@@ -12,8 +12,6 @@ public class UserDTO {
 
     public String role;
 
-
-
     public UserDTO(String firstname, String lastname, String email, String password, String role) {
         this.firstname = firstname;
         this.lastname = lastname;

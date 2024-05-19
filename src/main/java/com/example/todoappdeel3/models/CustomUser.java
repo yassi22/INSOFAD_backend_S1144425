@@ -34,7 +34,6 @@ public class CustomUser {
 
 
 
-
     public CustomUser() {
     }
 

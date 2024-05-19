@@ -2,13 +2,11 @@ package com.example.todoappdeel3.controller;
 
 
 import com.example.todoappdeel3.dao.UserDAO;
+import com.example.todoappdeel3.dto.UserDTO;
 import com.example.todoappdeel3.models.CustomUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +26,19 @@ public class UserController {
     public ResponseEntity<List<CustomUser>> getAllUsers() {
         return ResponseEntity.ok(userDAO.getAllUsers());
     }
+
+
+    @PreAuthorize(" hasRole('ROLE_ADMIN')")
+    @PostMapping
+    public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
+        try {
+            this.userDAO.createUser(userDTO);
+            return ResponseEntity.ok("Created a new user");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+
 
 }

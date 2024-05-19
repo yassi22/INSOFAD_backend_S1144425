@@ -31,6 +31,7 @@ public class JWTUtil {
                 .withSubject("User Details")
                 .withClaim("email", email)
                 .withClaim("userId", customUser.getId())
+                .withClaim("role", customUser.getRole())
                 .withIssuedAt(new Date())
                 .withExpiresAt(this.createExpirationDate())
                 .withIssuer("Lina Xu")
