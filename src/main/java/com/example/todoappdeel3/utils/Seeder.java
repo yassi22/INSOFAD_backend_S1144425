@@ -1,13 +1,8 @@
 package com.example.todoappdeel3.utils;
 
 
-import com.example.todoappdeel3.dao.CategoryDAO;
-import com.example.todoappdeel3.dao.OrderRepository;
-import com.example.todoappdeel3.dao.ProductDAO;
-import com.example.todoappdeel3.dao.UserRepository;
-import com.example.todoappdeel3.models.Category;
-import com.example.todoappdeel3.models.CustomUser;
-import com.example.todoappdeel3.models.Product;
+import com.example.todoappdeel3.dao.*;
+import com.example.todoappdeel3.models.*;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,11 +16,17 @@ public class Seeder {
     private final CategoryDAO categoryDAO;
     private final OrderRepository orderRepository;
 
-    public Seeder(ProductDAO productDAO, UserRepository userRepository, CategoryDAO categoryDAO, OrderRepository orderRepository) {
+    private final OptionsRepository optionsRepository;
+
+    private final ProductVariantRepository productVariantRepository;
+
+    public Seeder(ProductDAO productDAO, UserRepository userRepository, CategoryDAO categoryDAO, OrderRepository orderRepository,  ProductVariantRepository productVariantRepository, OptionsRepository optionsRepository) {
         this.productDAO = productDAO;
         this.userRepository = userRepository;
         this.categoryDAO = categoryDAO;
         this.orderRepository = orderRepository;
+        this.productVariantRepository = productVariantRepository;
+        this.optionsRepository = optionsRepository;
     }
 
     @EventListener
@@ -78,6 +79,28 @@ public class Seeder {
         this.categoryDAO.createCategory(categoryAccessories);
         this.categoryDAO.createCategory(categoryCapsAndBeanies);
         this.categoryDAO.createCategory(categoryOuterwear);
+
+        ProductVariant productVariant = new ProductVariant(
+                "Grootte",
+                "De grootte van een hoodie",
+                product1
+        );
+
+        this.productVariantRepository.save(productVariant);
+
+        Options optionS = new Options("S", 100, productVariant);
+        Options optionM = new Options("M", 100, productVariant);
+        Options optionL = new Options("L", 100, productVariant);
+        Options optionXL = new Options("XL", 100, productVariant);
+
+        this.optionsRepository.save(optionS);
+        this.optionsRepository.save(optionM);
+        this.optionsRepository.save(optionL);
+        this.optionsRepository.save(optionXL);
+
+
+
+
     }
 
     private void seedUser(){
