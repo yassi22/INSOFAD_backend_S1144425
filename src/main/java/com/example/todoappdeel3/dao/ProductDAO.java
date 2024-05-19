@@ -44,6 +44,20 @@ public class ProductDAO {
         return products.get();
     }
 
+    public Product getProduct(long id){
+        Optional<Product> product = this.productRepository.findById(id);
+
+        if(product.isPresent()) {
+            return product.get();
+        }  else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "De gevraagde product is niet gevonden"
+            );
+        }
+
+    }
+
+
     @Transactional
     public void createProduct(ProductDTO productDTO){
         Optional<Category> category = this.categoryRepository.findById(productDTO.categoryId);

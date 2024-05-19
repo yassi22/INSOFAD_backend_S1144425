@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 
 
@@ -40,6 +41,16 @@ public class ProductController {
             products = productRepository.findAll();
         }
         return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductId(@PathVariable Long id){
+        try {
+            Product product = this.productDAO.getProduct(id);
+            return ResponseEntity.ok(product);
+        } catch (ResolutionException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
