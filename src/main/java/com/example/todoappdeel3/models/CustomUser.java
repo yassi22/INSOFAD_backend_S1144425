@@ -38,7 +38,9 @@ public class CustomUser {
     public CustomUser() {
     }
 
-    public CustomUser(String email, String password, String role) {
+    public CustomUser(String firstname, String lastname, String email, String password, String role) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.role = role;
