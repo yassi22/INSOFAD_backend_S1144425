@@ -86,6 +86,13 @@ public class Seeder {
         customUser.setPassword(new BCryptPasswordEncoder().encode("IreallyL0vePupp1es!"));
         customUser.setRole("ROLE_USER");
         userRepository.save(customUser);
+
+        CustomUser customUserAdmin = new CustomUser();
+        customUserAdmin.setEmail("bob@adminluxuryenterprise.com");
+        customUserAdmin.setPassword(new BCryptPasswordEncoder().encode("k2C^QNP!dnx4ft"));
+        customUserAdmin.setRole("ROLE_ADMIN");
+        userRepository.save(customUserAdmin);
+
     }
 
 
