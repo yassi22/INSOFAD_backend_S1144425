@@ -89,9 +89,9 @@ public class Seeder {
         this.productVariantRepository.save(productVariant);
 
         Options optionS = new Options("S", 100, productVariant);
-        Options optionM = new Options("M", 100, productVariant);
-        Options optionL = new Options("L", 100, productVariant);
-        Options optionXL = new Options("XL", 100, productVariant);
+        Options optionM = new Options("M", 150, productVariant);
+        Options optionL = new Options("L", 200, productVariant);
+        Options optionXL = new Options("XL", 300, productVariant);
 
         this.optionsRepository.save(optionS);
         this.optionsRepository.save(optionM);
