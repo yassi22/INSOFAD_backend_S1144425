@@ -92,9 +92,17 @@ public class Seeder {
                 product1
         );
 
+        ProductVariant productVariant3 = new ProductVariant(
+                "Print",
+                "De print van de hoodie",
+                product1
+        );
+
         this.productVariantRepository.save(productVariant);
 
         this.productVariantRepository.save(productVariant2);
+
+        this.productVariantRepository.save(productVariant3);
 
         Options optionS = new Options("S", 100, productVariant);
         Options optionM = new Options("M", 150, productVariant);
@@ -104,6 +112,10 @@ public class Seeder {
         Options optionRed = new Options("Red", 100, productVariant2);
         Options optionBlue = new Options("Blue", 150, productVariant2);
         Options optionBlack = new Options("Black", 200, productVariant2);
+
+        Options optionPrintOne = new Options("Grote Print",200 , productVariant3);
+        Options optionPrintTwo = new Options("Medium Print", 100, productVariant3);
+        Options optionPrintThree = new Options("Small Print", 50, productVariant3);
 
 
         this.optionsRepository.save(optionS);
@@ -116,8 +128,9 @@ public class Seeder {
         this.optionsRepository.save(optionBlue);
         this.optionsRepository.save(optionBlack);
 
-
-
+        this.optionsRepository.save(optionPrintOne);
+        this.optionsRepository.save(optionPrintTwo);
+        this.optionsRepository.save(optionPrintThree);
 
 
 
