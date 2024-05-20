@@ -3,7 +3,9 @@ package com.example.todoappdeel3.dao;
 
 import com.example.todoappdeel3.dto.ProductDTO;
 import com.example.todoappdeel3.models.Category;
+import com.example.todoappdeel3.models.Options;
 import com.example.todoappdeel3.models.Product;
+import com.example.todoappdeel3.models.ProductVariant;
 import jakarta.transaction.Transactional;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.http.HttpStatus;
@@ -18,10 +20,17 @@ public class ProductDAO {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ProductVariantRepository productVariantRepository;
+    private final OptionsRepository optionsRepository;
 
-    public ProductDAO(ProductRepository repository, CategoryRepository category) {
+
+
+    public ProductDAO(ProductRepository repository, CategoryRepository category, ProductVariantRepository productVariantRepository, OptionsRepository optionsRepository) {
         this.productRepository = repository;
         this.categoryRepository = category;
+        this.productVariantRepository = productVariantRepository;
+        this.optionsRepository = optionsRepository;
+
     }
 
     public List<Product> getAllProducts(){
@@ -56,6 +65,15 @@ public class ProductDAO {
         }
 
     }
+
+    public List<ProductVariant> getProductVariants(List<Long> ids){
+        return this.productVariantRepository.findAllById(ids);
+    }
+
+    public List<Options> getOptions(List<Long> ids){
+        return this.optionsRepository.findAllById(ids);
+    }
+
 
 
     @Transactional

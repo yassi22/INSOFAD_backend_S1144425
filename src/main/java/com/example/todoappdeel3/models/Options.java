@@ -1,10 +1,9 @@
 package com.example.todoappdeel3.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Options {
@@ -20,6 +19,11 @@ public class Options {
     @ManyToOne
     @JsonBackReference
     public ProductVariant productVariant;
+
+    @ManyToMany
+    @JsonBackReference
+    private List<Order> order;
+
 
     public Options(String name, double added_price, ProductVariant productVariant) {
         this.name = name;
@@ -62,4 +66,14 @@ public class Options {
     public void setProductVariant(ProductVariant productVariant) {
         this.productVariant = productVariant;
     }
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
+
 }

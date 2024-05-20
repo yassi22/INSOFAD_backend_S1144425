@@ -2,8 +2,10 @@ package com.example.todoappdeel3.dao;
 
 
 import com.example.todoappdeel3.dto.OrderDTO;
+import com.example.todoappdeel3.models.Options;
 import com.example.todoappdeel3.models.Order;
 import com.example.todoappdeel3.models.Product;
+import com.example.todoappdeel3.models.ProductVariant;
 import com.example.todoappdeel3.services.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
@@ -24,8 +26,6 @@ public class OrderDAO {
 
 
 
-
-
     public OrderDAO(OrderRepository orderRepository, ProductDAO productDAO, UserRepository userRepository, ProductService productService) {
         this.orderRepository = orderRepository;
         this.productDAO = productDAO;
@@ -41,8 +41,10 @@ public class OrderDAO {
     @Transactional
     public void createOrder(OrderDTO orderDTO) {
         List<Product> productList = productDAO.getProducts(orderDTO.productIds);
+        List<ProductVariant> productVariantList = productDAO.getProductVariants(orderDTO.productVariantId);
+        List<Options> optionsList = productDAO.getOptions(orderDTO.optionsId);
 
-        Order order = new Order(productService.makeName(productList), productService.calculatePrice(productList), LocalDateTime.now(), productList);
+        Order order = new Order(productService.makeName(productList), productService.calculatePrice(productList), LocalDateTime.now(), productList, productVariantList, optionsList);
         order.setCustomUser(userRepository.findByEmail(orderDTO.email));
         this.orderRepository.save(order);
 

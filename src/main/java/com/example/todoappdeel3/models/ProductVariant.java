@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,10 @@ public class ProductVariant {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference
     private Product product;
+
+    @ManyToMany
+    @JsonBackReference
+    private List<Order> order;
 
 
     @OneToMany(mappedBy = "productVariant")
@@ -77,5 +82,14 @@ public class ProductVariant {
     public void setOptions(Set<Options> options) {
         this.options = options;
     }
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
 
 }
