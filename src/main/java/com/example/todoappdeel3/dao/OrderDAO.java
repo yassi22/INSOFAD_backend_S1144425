@@ -2,15 +2,14 @@ package com.example.todoappdeel3.dao;
 
 
 import com.example.todoappdeel3.dto.OrderDTO;
-import com.example.todoappdeel3.models.Options;
-import com.example.todoappdeel3.models.Order;
-import com.example.todoappdeel3.models.Product;
-import com.example.todoappdeel3.models.ProductVariant;
+import com.example.todoappdeel3.dto.ProductDTO;
+import com.example.todoappdeel3.models.*;
 import com.example.todoappdeel3.services.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -24,13 +23,16 @@ public class OrderDAO {
 
     private final ProductService productService;
 
+    private final CategoryDAO categoryDAO;
 
 
-    public OrderDAO(OrderRepository orderRepository, ProductDAO productDAO, UserRepository userRepository, ProductService productService) {
+
+    public OrderDAO(OrderRepository orderRepository, ProductDAO productDAO, UserRepository userRepository, ProductService productService, CategoryDAO categoryDAO) {
         this.orderRepository = orderRepository;
         this.productDAO = productDAO;
         this.userRepository = userRepository;
         this.productService = productService;
+        this.categoryDAO = categoryDAO;
     }
 
     public List<Order> getAllOrders(){
@@ -40,11 +42,15 @@ public class OrderDAO {
 
     @Transactional
     public void createOrder(OrderDTO orderDTO) {
-        List<Product> productList = productDAO.getProducts(orderDTO.productIds);
-        List<ProductVariant> productVariantList = productDAO.getProductVariants(orderDTO.productVariantId);
-        List<Options> optionsList = productDAO.getOptions(orderDTO.optionsId);
 
-        Order order = new Order(productService.makeName(productList), productService.calculatePrice(productList), LocalDateTime.now(), productList, productVariantList, optionsList);
+        List<Product> productList = new ArrayList<>();
+
+        for(ProductDTO productJson : orderDTO.products){
+            Product product = new Product(productJson.name,productJson.description,productJson.price, categoryDAO.getCategory(productJson.categoryId), productJson.durability, productJson.fitting,productJson.imageURL, productJson.stock);
+            productList.add(product);
+        }
+
+        Order order = new Order(productService.makeName(productList), productService.calculatePrice(productList),LocalDateTime.now(), productList);
         order.setCustomUser(userRepository.findByEmail(orderDTO.email));
         this.orderRepository.save(order);
 

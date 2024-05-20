@@ -30,26 +30,17 @@ public class Order {
     @JsonManagedReference
     private List<Product> product;
 
-    @ManyToMany
-    @JsonManagedReference
-    private List<ProductVariant> productVariants;
-
-    @ManyToMany
-    @JsonManagedReference
-    private List<Options> options;
-
 
     public Order() {
 
     }
 
-    public Order(String orderTitle, double orderPrice, LocalDateTime datum, List<Product> product, List<ProductVariant> productVariants, List<Options> options) {
+    public Order(String orderTitle, double orderPrice, LocalDateTime datum, List<Product> product) {
         this.orderTitle = orderTitle;
         this.orderPrice = orderPrice;
         this.datum = datum;
         this.product = product;
-        this.productVariants = productVariants;
-        this.options = options;
+
     }
 
     public CustomUser getCustomUser() {
@@ -98,22 +89,6 @@ public class Order {
 
     public void setOrderPrice(double orderPrice) {
         this.orderPrice = orderPrice;
-    }
-
-    public List<ProductVariant> getProductVariants() {
-        return productVariants;
-    }
-
-    public void setProductVariants(List<ProductVariant> productVariants) {
-        this.productVariants = productVariants;
-    }
-
-    public List<Options> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<Options> options) {
-        this.options = options;
     }
 
 

@@ -8,12 +8,14 @@ import com.example.todoappdeel3.models.CustomUser;
 import com.example.todoappdeel3.models.Order;
 import com.example.todoappdeel3.services.OrderService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
 
 
@@ -39,7 +41,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderDTO){
+    public ResponseEntity<String> createOrder( OrderDTO orderDTO){
         try{
             this.orderDAO.createOrder(orderDTO);
             return ResponseEntity.ok("Order created");

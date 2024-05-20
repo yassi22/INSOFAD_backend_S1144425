@@ -3,6 +3,7 @@ package com.example.todoappdeel3.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,7 @@ public class Product {
     */
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference
+    @Nullable
     private Category category;
 
 

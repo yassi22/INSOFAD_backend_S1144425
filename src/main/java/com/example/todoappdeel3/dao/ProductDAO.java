@@ -66,12 +66,12 @@ public class ProductDAO {
 
     }
 
-    public List<ProductVariant> getProductVariants(List<Long> ids){
-        return this.productVariantRepository.findAllById(ids);
+    public List<Product> getProductVariants(List<Long> ids){
+        return this.productRepository.findAllById(ids);
     }
 
-    public List<Options> getOptions(List<Long> ids){
-        return this.optionsRepository.findAllById(ids);
+    public List<Product> getOptions(List<Long> ids){
+        return this.productRepository.findAllById(ids);
     }
 
 

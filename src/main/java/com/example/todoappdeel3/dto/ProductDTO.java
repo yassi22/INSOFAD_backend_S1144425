@@ -3,7 +3,9 @@ package com.example.todoappdeel3.dto;
 import com.example.todoappdeel3.models.ProductVariant;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+import java.util.List;
 import java.util.Set;
+
 
 public class ProductDTO {
     public String name;
@@ -17,7 +19,9 @@ public class ProductDTO {
     public long categoryId;
     public Set<ProductVariant> variants;
 
-    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageURL, Integer stock, long categoryId,  Set<ProductVariant> variants) {
+    public List<ProductVariantDTO> foundVariants;
+
+    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageURL, Integer stock, long categoryId,  Set<ProductVariant> variants, List<ProductVariantDTO> foundVariants) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -27,6 +31,7 @@ public class ProductDTO {
         this.stock = stock;
         this.categoryId = categoryId;
         this.variants = variants;
+        this.foundVariants = foundVariants;
     }
 
 
