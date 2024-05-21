@@ -53,12 +53,12 @@ public class ProductController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping
-    public ResponseEntity<String> createProduct(@RequestBody ProductDTO productDTO){
-        this.productDAO.createProduct(productDTO);
-        return ResponseEntity.ok("Created a product");
-    }
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PostMapping
+//    public ResponseEntity<String> createProduct(@RequestBody ProductDTO productDTO){
+//        this.productDAO.createProduct(productDTO);
+//        return ResponseEntity.ok("Created a product");
+//    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")

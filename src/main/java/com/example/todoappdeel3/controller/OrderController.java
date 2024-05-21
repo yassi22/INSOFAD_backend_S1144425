@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.print.attribute.standard.Media;
 import java.util.List;
@@ -42,7 +43,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderDTO){
-        try{
+       try{
             this.orderDAO.createOrder(orderDTO);
             return ResponseEntity.ok("Order created");
         } catch (Exception e) {

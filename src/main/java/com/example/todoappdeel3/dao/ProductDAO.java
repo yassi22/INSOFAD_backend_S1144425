@@ -76,28 +76,28 @@ public class ProductDAO {
 
 
 
-    @Transactional
-    public void createProduct(ProductDTO productDTO){
-        Optional<Category> category = this.categoryRepository.findById(productDTO.categoryId);
-        if (category.isPresent()){
-            Product product = new Product(
-                    productDTO.name,
-                    productDTO.description,
-                    productDTO.price,
-                    category.get(),
-                    productDTO.durability,
-                    productDTO.fitting,
-                    productDTO.imageURL,
-                    productDTO.quantity
-            );
-            this.productRepository.save(product);
-            return;
-        }
-
-        throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Category not found"
-        );
-    }
+//    @Transactional
+//    public void createProduct(ProductDTO productDTO){
+//        Optional<Category> category = this.categoryRepository.findById(productDTO.categoryId);
+//        if (category.isPresent()){
+//            Product product = new Product(
+//                    productDTO.name,
+//                    productDTO.description,
+//                    productDTO.price,
+//                    category.get(),
+//                    productDTO.durability,
+//                    productDTO.fitting,
+//                    productDTO.imageUrl,
+//                    productDTO.quantity
+//            );
+//            this.productRepository.save(product);
+//            return;
+//        }
+//
+//        throw new ResponseStatusException(
+//                HttpStatus.NOT_FOUND, "Category not found"
+//        );
+//    }
 
     @Transactional
     public void createProduct(@NotNull Product product){

@@ -7,19 +7,18 @@ import java.util.List;
 
 public class ProductVariantDTO {
 
+    public long id;
+
     public String name;
 
     public String description;
 
-    public Product product;
+    public List<OptionsDTO> options;
 
-    public List<OptionsDTO> foundOptions;
-
-    public ProductVariantDTO(String name, String description, Product product, List<OptionsDTO> foundOptions) {
+    public ProductVariantDTO(long id, String name, String description, List<OptionsDTO> options) {
         this.name = name;
         this.description = description;
-        this.product = product;
-        this.foundOptions = foundOptions;
+        this.options = options;
     }
 
 

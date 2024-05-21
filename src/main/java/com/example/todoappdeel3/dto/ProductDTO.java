@@ -16,23 +16,25 @@ public class ProductDTO {
     public double price;
     public String durability;
     public String fitting;
-    public String imageURL;
+    public String imageUrl;
     public Integer quantity;
-    @JsonAlias("category_id")
-    public long categoryId;
-    public Set<ProductVariant> variants;
+
+//    @JsonAlias("category")
+//    public long categoryId;
+
+    public List<ProductVariantDTO> variants;
 
 //    public Set<ProductVariant> foundVariants;
 
-    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageURL, Integer quantity, long categoryId,  Set<ProductVariant> variants) {
+    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageUrl, Integer quantity, List<ProductVariantDTO> variants) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.durability = durability;
         this.fitting = fitting;
-        this.imageURL = imageURL;
+        this.imageUrl = imageUrl;
         this.quantity = quantity;
-        this.categoryId = categoryId;
+//        this.categoryId = categoryId;
         this.variants = variants;
 
     }

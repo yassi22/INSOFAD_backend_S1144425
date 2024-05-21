@@ -44,9 +44,10 @@ public class OrderDAO {
     public void createOrder(OrderDTO orderDTO) {
 
         List<Product> productList = new ArrayList<>();
-
+        System.out.println(orderDTO.products);
         for(ProductDTO productJson : orderDTO.products){
-            Product product = new Product(productJson.name,productJson.description,productJson.price, categoryDAO.getCategory(productJson.categoryId), productJson.durability, productJson.fitting,productJson.imageURL, productJson.quantity);
+            System.out.println(productJson);
+            Product product = new Product(productJson.name,productJson.description,productJson.price,null, productJson.durability, productJson.fitting,productJson.imageUrl, productJson.quantity);
             productList.add(product);
         }
 

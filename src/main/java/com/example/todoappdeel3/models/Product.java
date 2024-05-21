@@ -20,7 +20,7 @@ public class Product {
     private String description;
     private String durability;
     private String fitting;
-    private String imageURL;
+    private String imageUrl;
     private Integer quantity;
     private boolean isFinished = false;
 
@@ -55,14 +55,14 @@ public class Product {
 
     }
 
-    public Product(String name, String description, double price, Category category, String durability, String fitting, String imageURL, int quantity) {
+    public Product(String name, String description, double price, Category category, String durability, String fitting, String imageUrl, int quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.category = category;
         this.durability = durability;
         this.fitting = fitting;
-        this.imageURL = imageURL;
+        this.imageUrl = imageUrl;
         this.quantity = quantity;
     }
 
@@ -90,11 +90,11 @@ public class Product {
     }
 
     public String getImageURL() {
-        return imageURL;
+        return imageUrl;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 
@@ -169,6 +169,8 @@ public class Product {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+
 
 
 }
