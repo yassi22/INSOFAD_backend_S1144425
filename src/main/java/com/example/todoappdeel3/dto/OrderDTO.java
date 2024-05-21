@@ -9,7 +9,6 @@ public class OrderDTO {
 
     public List<ProductDTO> products;
 
-
     public OrderDTO(String email, List<ProductDTO> products) {
         this.email = email;
         this.products = products;

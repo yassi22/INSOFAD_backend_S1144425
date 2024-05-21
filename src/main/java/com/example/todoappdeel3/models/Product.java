@@ -1,5 +1,6 @@
 package com.example.todoappdeel3.models;
 
+import com.example.todoappdeel3.dto.OptionsDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -20,7 +21,7 @@ public class Product {
     private String durability;
     private String fitting;
     private String imageURL;
-    private Integer stock;
+    private Integer quantity;
     private boolean isFinished = false;
 
     @ManyToMany
@@ -42,6 +43,11 @@ public class Product {
     @JsonManagedReference
     public Set<ProductVariant> variants;
 
+//    @OneToMany(mappedBy = "product_variant_id")
+//    @JsonManagedReference
+//    @Nullable
+//    private List<ProductVariant> foundVariants;
+
 
     //needed by JPA to create the entity must be present no arg constructor
 
@@ -49,7 +55,7 @@ public class Product {
 
     }
 
-    public Product(String name, String description, double price, Category category, String durability, String fitting, String imageURL, int stock) {
+    public Product(String name, String description, double price, Category category, String durability, String fitting, String imageURL, int quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -57,7 +63,7 @@ public class Product {
         this.durability = durability;
         this.fitting = fitting;
         this.imageURL = imageURL;
-        this.stock = stock;
+        this.quantity = quantity;
     }
 
     //getters and setters are needed to map all the properties to the database by JPA, could
@@ -91,13 +97,6 @@ public class Product {
         this.imageURL = imageURL;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
 
     public void setCategory(Category category) {
         this.category = category;
@@ -154,4 +153,22 @@ public class Product {
     public void setVariants(Set<ProductVariant> variants) {
         this.variants = variants;
     }
+
+//    public List<ProductVariant> getFoundVariants() {
+//        return foundVariants;
+//    }
+//
+//    public void setFoundVariants(List<ProductVariant> foundVariants) {
+//        this.foundVariants = foundVariants;
+//    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Options {
@@ -23,6 +24,12 @@ public class Options {
     @ManyToMany
     @JsonBackReference
     private List<Order> order;
+
+//    @ManyToOne
+//    @JsonBackReference
+//    private ProductVariant foundVariants;
+
+
 
 
     public Options(String name, double added_price, ProductVariant productVariant) {
@@ -75,5 +82,11 @@ public class Options {
         this.order = order;
     }
 
-
+//    public ProductVariant getFoundVariants() {
+//        return foundVariants;
+//    }
+//
+//    public void setFoundVariants(ProductVariant foundVariants) {
+//        this.foundVariants = foundVariants;
+//    }
 }

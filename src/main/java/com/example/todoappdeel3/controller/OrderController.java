@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/orders")
+@RequestMapping(value = "/orders")
 public class OrderController {
 
 
@@ -41,7 +41,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrder( OrderDTO orderDTO){
+    public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderDTO){
         try{
             this.orderDAO.createOrder(orderDTO);
             return ResponseEntity.ok("Order created");

@@ -88,7 +88,7 @@ public class ProductDAO {
                     productDTO.durability,
                     productDTO.fitting,
                     productDTO.imageURL,
-                    productDTO.stock
+                    productDTO.quantity
             );
             this.productRepository.save(product);
             return;

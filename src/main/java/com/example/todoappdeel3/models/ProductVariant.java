@@ -4,6 +4,7 @@ package com.example.todoappdeel3.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Set;
@@ -32,6 +33,13 @@ public class ProductVariant {
     @OneToMany(mappedBy = "productVariant")
     @JsonManagedReference
     public Set<Options> options;
+
+//    @OneToMany(mappedBy = "options_id")
+//    @JsonManagedReference
+//    @Nullable
+//    public List<Options> foundOptions;
+//
+
 
     public ProductVariant(String name, String description, Product product) {
         this.name = name;
@@ -91,5 +99,11 @@ public class ProductVariant {
         this.order = order;
     }
 
-
+//    public List<Options> getFoundOptions() {
+//        return foundOptions;
+//    }
+//
+//    public void setFoundOptions(List<Options> foundOptions) {
+//        this.foundOptions = foundOptions;
+//    }
 }
