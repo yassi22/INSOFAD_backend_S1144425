@@ -18,6 +18,8 @@ public class ProductService {
         return total;
     }
 
+
+
     public String makeName(List<Product> products){
         List<String> names = new ArrayList<>();
         for(Product product : products){

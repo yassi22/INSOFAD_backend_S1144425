@@ -47,7 +47,11 @@ public class OrderController {
             this.orderDAO.createOrder(orderDTO);
             return ResponseEntity.ok("Order created");
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
+            e.printStackTrace();
+           System.out.println(e.getMessage());
+
+
+           return ResponseEntity.internalServerError().build();
         }
     }
 
