@@ -78,6 +78,7 @@ public class OrderDAO {
 
     protected double calculatePrice(List<Product> productList, List<Options> optionsList){
         double totalPrice = 0.0;
+        double shippingPrice = 4.95;
 
         for(Product product : productList) {
             totalPrice += product.getPrice();
@@ -87,6 +88,8 @@ public class OrderDAO {
             totalPrice += options.getAdded_price();
 
         }
+
+        totalPrice += shippingPrice;
 
         return totalPrice;
 
