@@ -43,6 +43,11 @@ public class Product {
     @JsonManagedReference
     public Set<ProductVariant> variants;
 
+    @OneToMany
+    @JsonManagedReference
+    public List<OrderProduct> orderProducts;
+
+
 //    @OneToMany(mappedBy = "product_variant_id")
 //    @JsonManagedReference
 //    @Nullable
@@ -170,7 +175,15 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
 
-
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
 }

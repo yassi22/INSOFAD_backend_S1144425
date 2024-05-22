@@ -19,28 +19,26 @@ public class Order {
 
     private double orderPrice;
 
-
     public LocalDateTime datum;
 
     @ManyToOne
     @JsonBackReference
     public CustomUser customUser;
 
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    private List<Product> product;
+    private List<OrderProduct> orderProducts;
 
 
     public Order() {
 
     }
 
-    public Order(String orderTitle, double orderPrice, LocalDateTime datum, List<Product> product) {
+    public Order(String orderTitle, double orderPrice, LocalDateTime datum, List<OrderProduct> orderProducts ) {
         this.orderTitle = orderTitle;
         this.orderPrice = orderPrice;
         this.datum = datum;
-        this.product = product;
-
+        this.orderProducts = orderProducts;
     }
 
     public CustomUser getCustomUser() {
@@ -67,13 +65,7 @@ public class Order {
         this.datum = datum;
     }
 
-    public List<Product> getProduct() {
-        return product;
-    }
 
-    public void setProduct(List<Product> product) {
-        this.product = product;
-    }
 
     public String getOrderTitle() {
         return orderTitle;
@@ -89,6 +81,15 @@ public class Order {
 
     public void setOrderPrice(double orderPrice) {
         this.orderPrice = orderPrice;
+    }
+
+
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
     }
 
 

@@ -49,7 +49,9 @@ public class OrderDAO {
 
         List<Product> productList = new ArrayList<>();
 
-        List<Options> optionsList = new ArrayList<>();
+        List<OrderProduct> orderProducts = new ArrayList<>();
+
+        List<Options> totalOptionsList = new ArrayList<>();
 
 
         System.out.println(orderDTO.products);
@@ -59,20 +61,22 @@ public class OrderDAO {
             Product product = productDAO.getProduct(productJson.id);
 
             productList.add(product);
-
+            List<Options> optionsList = new ArrayList<>();
             for (ProductVariantDTO productVariantJson : productJson.variants) {
                 for (OptionsDTO optionsJson : productVariantJson.options) {
                     Options option = optionsDAO.getOption(optionsJson.id);
                     optionsList.add(option);
+                    totalOptionsList.add(option);
                 }
             }
 
-
-            Order order = new Order(productService.makeName(productList), calculatePrice(  productList, optionsList), LocalDateTime.now(), productList);
-            order.setCustomUser(userRepository.findByEmail(orderDTO.email));
-            this.orderRepository.save(order);
-
+            orderProducts.add(new OrderProduct(product, optionsList));
         }
+
+
+        Order order = new Order(productService.makeName(productList), calculatePrice(productList, totalOptionsList), LocalDateTime.now(), orderProducts);
+        order.setCustomUser(userRepository.findByEmail(orderDTO.email));
+        this.orderRepository.saveAndFlush(order);
 
     }
 

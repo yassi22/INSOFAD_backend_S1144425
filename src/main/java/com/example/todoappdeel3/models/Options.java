@@ -1,6 +1,7 @@
 package com.example.todoappdeel3.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,6 +25,12 @@ public class Options {
     @ManyToMany
     @JsonBackReference
     private List<Order> order;
+
+    @ManyToMany
+    @JsonManagedReference
+    private List<OrderProduct> orderProductList;
+
+
 
 //    @ManyToOne
 //    @JsonBackReference
@@ -89,4 +96,13 @@ public class Options {
 //    public void setFoundVariants(ProductVariant foundVariants) {
 //        this.foundVariants = foundVariants;
 //    }
+
+
+    public List<OrderProduct> getOrderProductList() {
+        return orderProductList;
+    }
+
+    public void setOrderProductList(List<OrderProduct> orderProductList) {
+        this.orderProductList = orderProductList;
+    }
 }
