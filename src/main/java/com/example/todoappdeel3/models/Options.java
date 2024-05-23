@@ -20,6 +20,7 @@ public class Options {
 
     @ManyToOne
     @JsonBackReference
+    @JoinColumn(name = "product_variant_id")
     public ProductVariant productVariant;
 
     @ManyToMany

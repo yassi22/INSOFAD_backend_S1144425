@@ -1,6 +1,7 @@
 package com.example.todoappdeel3.dao;
 
 
+import com.example.todoappdeel3.dto.DeleteVariantOptionsDTO;
 import com.example.todoappdeel3.dto.ProductDTO;
 import com.example.todoappdeel3.models.Category;
 import com.example.todoappdeel3.models.Options;
@@ -66,6 +67,24 @@ public class ProductDAO {
 
     }
 
+    public boolean changeQuantityProduct(long id ){
+        Product product = getProduct(id);
+
+        int productQuantity = product.getQuantity();
+
+        productQuantity = productQuantity - 1;
+
+
+        product.setQuantity(productQuantity);
+
+
+//     this.productRepository.save(product.setQuantity(-1));
+
+        return false;
+
+    }
+
+
     public List<Product> getProductVariants(List<Long> ids){
         return this.productRepository.findAllById(ids);
     }
@@ -73,7 +92,6 @@ public class ProductDAO {
     public List<Product> getOptions(List<Long> ids){
         return this.productRepository.findAllById(ids);
     }
-
 
 
 //    @Transactional
@@ -135,6 +153,17 @@ public class ProductDAO {
 
     public void deleteById(Long id) {
         this.productRepository.deleteById(id);
+    }
+
+    public void deleteVariantOptions( DeleteVariantOptionsDTO deleteVariantOptionsDTO){
+        for(long variant_id : deleteVariantOptionsDTO.variant_ids) {
+            this.productVariantRepository.deleteById(variant_id);
+        }
+
+        for(long options_id : deleteVariantOptionsDTO.option_ids) {
+            this.productVariantRepository.deleteById(options_id);
+        }
+
     }
 
     public List<Product> findAll(){

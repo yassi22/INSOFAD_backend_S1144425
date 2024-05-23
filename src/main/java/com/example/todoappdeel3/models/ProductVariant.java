@@ -30,7 +30,7 @@ public class ProductVariant {
     private List<Order> order;
 
 
-    @OneToMany(mappedBy = "productVariant")
+    @OneToMany(mappedBy = "productVariant", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     public Set<Options> options;
 

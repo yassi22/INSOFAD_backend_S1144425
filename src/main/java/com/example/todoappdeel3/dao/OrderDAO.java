@@ -60,6 +60,9 @@ public class OrderDAO {
 //            Product product = new Product(productJson.name,productJson.description,productJson.price,null, productJson.durability, productJson.fitting,productJson.imageUrl, productJson.quantity);
             Product product = productDAO.getProduct(productJson.id);
 
+            productDAO.changeQuantityProduct(productJson.id);
+
+
             productList.add(product);
             List<Options> optionsList = new ArrayList<>();
             for (ProductVariantDTO productVariantJson : productJson.variants) {

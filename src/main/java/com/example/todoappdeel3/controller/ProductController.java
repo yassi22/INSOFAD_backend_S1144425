@@ -3,6 +3,7 @@ package com.example.todoappdeel3.controller;
 
 import com.example.todoappdeel3.dao.ProductDAO;
 import com.example.todoappdeel3.dao.ProductRepository;
+import com.example.todoappdeel3.dto.DeleteVariantOptionsDTO;
 import com.example.todoappdeel3.dto.ProductDTO;
 import com.example.todoappdeel3.models.Product;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<Product>> getAllProducts(){
         return ResponseEntity.ok(this.productDAO.getAllProducts());
     }
@@ -89,5 +91,13 @@ public class ProductController {
 
         return ResponseEntity.ok("Product deleted with id " + id);
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping ("variants-options")
+    public ResponseEntity<String> deleteVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
+            this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
+            return ResponseEntity.ok("Product variant and options deleted ");
+    }
+
 
 }
