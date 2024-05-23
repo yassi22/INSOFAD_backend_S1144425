@@ -156,12 +156,17 @@ public class ProductDAO {
     }
 
     public void deleteVariantOptions( DeleteVariantOptionsDTO deleteVariantOptionsDTO){
-        for(long variant_id : deleteVariantOptionsDTO.variant_ids) {
-            this.productVariantRepository.deleteById(variant_id);
-        }
 
         for(long options_id : deleteVariantOptionsDTO.option_ids) {
             this.productVariantRepository.deleteById(options_id);
+        }
+
+        for(long variant_id : deleteVariantOptionsDTO.variant_ids) {
+            ProductVariant productVariant = this.productVariantRepository.getById(variant_id);
+            for(Options options : productVariant.getOptions()) {
+                optionsRepository.deleteById(options.getId());
+            }
+            this.productVariantRepository.deleteById(variant_id);
         }
 
     }

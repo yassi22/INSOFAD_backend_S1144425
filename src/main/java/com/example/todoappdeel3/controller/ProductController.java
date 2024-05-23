@@ -92,12 +92,10 @@ public class ProductController {
         return ResponseEntity.ok("Product deleted with id " + id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping ("variants-options")
+
+    @PostMapping ("/variants-options")
     public ResponseEntity<String> deleteVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
             this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
             return ResponseEntity.ok("Product variant and options deleted ");
     }
-
-
 }
