@@ -74,6 +74,10 @@ public class ProductDAO {
 
         productQuantity = productQuantity - 1;
 
+        if(productQuantity <= 0 ){
+            return false;
+        }
+
 
         product.setQuantity(productQuantity);
 
