@@ -57,17 +57,6 @@ public class OrderController {
 
 
 
-//    @GetMapping("/myorder")
-//    public ResponseEntity<List<Order>> getMyOrders(@AuthenticationPrincipal CustomUser customUser) {
-//        Long userId = customUser.getId();
-//        List<Order> orders = orderService.findOrderUser(userId);
-//        if (orders.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(orders, HttpStatus.OK);
-//    }
-
-
     @GetMapping ("/user/{userId}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public ResponseEntity <List<Order>> getOrderUser(@PathVariable Long userId) {
@@ -83,26 +72,6 @@ public class OrderController {
 
     }
 
-
-
-
-
-
-//    @PostMapping
-//    public Order placeOrder(@RequestBody OrderDTO orderDTO) {
-//        return orderService.placeOrder(orderDTO);
-//    }
-
-//    @GetMapping("/history")
-//    public ResponseEntity<List<Order>> getOrderHistory(@AuthenticationPrincipal CustomUser customUser) {
-//        Long userId = customUser.getId(); // Dit haalt de ingelogde gebruiker's ID op
-//        List<Order> orders = orderService.findOrdersByCustomUserId(userId);
-//        if (orders.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(orders, HttpStatus.OK);
-//    }
-//
 
 
 }

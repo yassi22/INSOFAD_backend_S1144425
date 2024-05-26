@@ -16,20 +16,16 @@ public class Category {
     private Long id;
 
     private String name;
-    /*
-    maps the one-to-many relationship between category and products, jsonmanaged so that we do not get an
-    infinite dependency loop in the request.
-     */
+
     @OneToMany(mappedBy = "category")
     @JsonManagedReference
     private Set<Product> products;
 
-    //needed by JPA to create the entity must be present no arg constructor
+
     public Category() {
     }
 
-    //getters and setters are needed to map all the properties to the database by JPA, could
-    //also be solved by making the properties public but gives less control over the properties.
+
     public Category(String name) {
         this.name = name;
     }

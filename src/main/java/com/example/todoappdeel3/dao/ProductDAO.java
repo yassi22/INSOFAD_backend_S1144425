@@ -76,9 +76,6 @@ public class ProductDAO {
 
         product.setQuantity(productQuantity);
 
-
-//     this.productRepository.save(product.setQuantity(-1));
-
         return false;
 
     }

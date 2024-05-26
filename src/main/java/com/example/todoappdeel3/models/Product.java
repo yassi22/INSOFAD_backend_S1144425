@@ -28,11 +28,7 @@ public class Product {
     @JsonBackReference
     private List<Order> order;
 
-     /*
-    Maps the many-to-one relationship between product and category, jsonbackreference so that we do not get an
-    infinite dependency loop in the request. Cascasdetype merge so the product is able to create a category if we
-    seed the data to the database. Without the merge you get a persistence race condition.
-    */
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference
     @Nullable
@@ -48,13 +44,6 @@ public class Product {
     public List<OrderProduct> orderProducts;
 
 
-//    @OneToMany(mappedBy = "product_variant_id")
-//    @JsonManagedReference
-//    @Nullable
-//    private List<ProductVariant> foundVariants;
-
-
-    //needed by JPA to create the entity must be present no arg constructor
 
     public Product() {
 
@@ -71,8 +60,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    //getters and setters are needed to map all the properties to the database by JPA, could
-    //also be solved by making the properties public but gives less control over the properties.
+
     public Category getCategory() {
         return category;
     }
@@ -159,13 +147,6 @@ public class Product {
         this.variants = variants;
     }
 
-//    public List<ProductVariant> getFoundVariants() {
-//        return foundVariants;
-//    }
-//
-//    public void setFoundVariants(List<ProductVariant> foundVariants) {
-//        this.foundVariants = foundVariants;
-//    }
 
     public Integer getQuantity() {
         return quantity;

@@ -33,13 +33,6 @@ public class Options {
 
 
 
-//    @ManyToOne
-//    @JsonBackReference
-//    private ProductVariant foundVariants;
-
-
-
-
     public Options(String name, double added_price, ProductVariant productVariant) {
         this.name = name;
         this.added_price = added_price;
@@ -89,15 +82,6 @@ public class Options {
     public void setOrder(List<Order> order) {
         this.order = order;
     }
-
-//    public ProductVariant getFoundVariants() {
-//        return foundVariants;
-//    }
-//
-//    public void setFoundVariants(ProductVariant foundVariants) {
-//        this.foundVariants = foundVariants;
-//    }
-
 
     public List<OrderProduct> getOrderProductList() {
         return orderProductList;

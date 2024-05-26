@@ -19,12 +19,8 @@ public class ProductDTO {
     public String imageUrl;
     public Integer quantity;
 
-//    @JsonAlias("category")
-//    public long categoryId;
-
     public List<ProductVariantDTO> variants;
 
-//    public Set<ProductVariant> foundVariants;
 
     public ProductDTO(String name, String description, double price, String durability, String fitting, String imageUrl, Integer quantity, List<ProductVariantDTO> variants) {
         this.name = name;
