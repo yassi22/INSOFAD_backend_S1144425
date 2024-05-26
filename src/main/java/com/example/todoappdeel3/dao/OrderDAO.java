@@ -83,7 +83,7 @@ public class OrderDAO {
 
     }
 
-    protected double calculatePrice(List<Product> productList, List<Options> optionsList){
+    public double calculatePrice(List<Product> productList, List<Options> optionsList){
         double totalPrice = 0.0;
         double shippingPrice = 4.95;
 

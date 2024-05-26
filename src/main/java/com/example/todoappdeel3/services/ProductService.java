@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    public double calculatePrice(List<Product> products) {
-        double total = 0.0;
-        for (Product product : products) {
-            total += product.getPrice();
-        }
-        return total;
-    }
+//    public double calculatePrice(List<Product> products) {
+//        double total = 0.0;
+//        for (Product product : products) {
+//            total += product.getPrice();
+//        }
+//        return total;
+//    }
 
 
 
