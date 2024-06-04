@@ -44,8 +44,8 @@ public class Seeder {
         Category categoryOuterwear = new Category("Premium Outerwear");
 
 // Luxe producten definiëren
-        Product product1 = new Product("Cashmere Hoodie", "Crafted from 100% pure cashmere, this hoodie offers unparalleled softness and warmth, ideal for those who seek both comfort and luxury.", 400.00, categoryHoodies, "A+", "Tailored Fit", "imageURL", 5);
-        Product product2 = new Product("Silk Hoodie", "Experience the smooth touch of pure silk with this hoodie, combining casual design with luxury fabric for a sophisticated, relaxed look.", 350.00, categoryHoodies, "A++", "Tailored Fit", "imageURL", 7);
+        Product product1 = new Product("Cashmere Hoodie", "Crafted from 100% pure cashmere, this hoodie offers unparalleled softness and warmth, ideal for those who seek both comfort and luxury.", 400.00, categoryHoodies, "A+", "Tailored Fit", "https://cdn2.propercloth.com/pic_sp/1835_4507bda8842e6cdf2484d62e3eb77635_size5.jpg", 5);
+        Product product2 = new Product("Silk Hoodie", "Experience the smooth touch of pure silk with this hoodie, combining casual design with luxury fabric for a sophisticated, relaxed look.", 350.00, categoryHoodies, "A++", "Tailored Fit", "https://coldcultureworldwide.com/cdn/shop/files/Product09_Aentamanogrande.png?v=1708614327&width=1080", 7);
         Product product11 = new Product("White Wool Hoodie", "Made from fine wool, this white hoodie blends comfort with elegance, perfect for a subtle, stylish statement.", 320.00, categoryHoodies, "A++",  "Tailored Fit", "imageURL" , 8);
 
         Product product3 = new Product("Italian Leather Pants", "Tailored from premium Italian leather, these pants offer a perfect blend of luxury and durability, tailored for the fashion-forward.", 700.00, categoryPants, "A+", "Slim Fit", "imageURL", 1);
@@ -98,6 +98,8 @@ public class Seeder {
                 product1
         );
 
+
+
         this.productVariantRepository.save(productVariant);
 
         this.productVariantRepository.save(productVariant2);
@@ -132,6 +134,60 @@ public class Seeder {
         this.optionsRepository.save(optionPrintTwo);
         this.optionsRepository.save(optionPrintThree);
 
+
+        ProductVariant productVariantSilkHoodieSize = new ProductVariant(
+                "Grootte",
+                "De grootte van een hoodie",
+                product2
+        );
+
+        ProductVariant productVariantSilkHoodieColor = new ProductVariant(
+                "Kleur",
+                "De kleur van de hoodie",
+                product2
+        );
+
+        ProductVariant productVariantSilkHoodiePrint = new ProductVariant(
+                "Print",
+                "De print van de hoodie",
+                product2
+        );
+
+        this.productVariantRepository.save(productVariantSilkHoodieSize);
+
+        this.productVariantRepository.save(productVariantSilkHoodieColor);
+
+        this.productVariantRepository.save(productVariantSilkHoodiePrint);
+
+
+        Options optionSilkHoodieS = new Options("S", 100, productVariantSilkHoodieSize);
+        Options optionSilkHoodieM = new Options("M", 150, productVariantSilkHoodieSize);
+        Options optionSilkHoodieL = new Options("L", 200, productVariantSilkHoodieSize);
+        Options optionSilkHoodieXL = new Options("XL", 300, productVariantSilkHoodieSize);
+
+        Options optionSilkHoodieRed = new Options("Red", 100, productVariantSilkHoodieColor);
+        Options optionSilkHoodieBlue = new Options("Blue", 150, productVariantSilkHoodieColor);
+        Options optionSilkHoodieBlack = new Options("Black", 200, productVariantSilkHoodieColor);
+
+        Options optionSilkHoodiePrintOne = new Options("Grote Print",200 , productVariantSilkHoodiePrint);
+        Options optionSilkHoodiePrintTwo = new Options("Medium Print", 100, productVariantSilkHoodiePrint);
+        Options optionSilkHoodiePrintThree = new Options("Small Print", 50, productVariantSilkHoodiePrint);
+
+
+
+        this.optionsRepository.save(optionSilkHoodieS);
+        this.optionsRepository.save(optionSilkHoodieM);
+        this.optionsRepository.save(optionSilkHoodieL);
+        this.optionsRepository.save(optionSilkHoodieXL);
+
+
+        this.optionsRepository.save(optionSilkHoodieRed);
+        this.optionsRepository.save(optionSilkHoodieBlue);
+        this.optionsRepository.save(optionSilkHoodieBlack);
+
+        this.optionsRepository.save(optionSilkHoodiePrintOne);
+        this.optionsRepository.save(optionSilkHoodiePrintTwo);
+        this.optionsRepository.save(optionSilkHoodiePrintThree);
 
 
     }
