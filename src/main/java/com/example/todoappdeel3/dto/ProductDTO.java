@@ -30,7 +30,7 @@ public class ProductDTO {
         this.fitting = fitting;
         this.imageUrl = imageUrl;
         this.quantity = quantity;
-//        this.categoryId = categoryId;
+//      this.categoryId = categoryId;
         this.variants = variants;
 
     }

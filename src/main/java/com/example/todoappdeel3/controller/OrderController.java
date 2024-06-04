@@ -36,10 +36,12 @@ public class OrderController {
         this.orderDAO = orderDAO;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders(){
         return ResponseEntity.ok(orderDAO.getAllOrders());
     }
+
 
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderDTO){

@@ -18,7 +18,7 @@ public class OrderProduct {
     private Product product;
 
     @ManyToMany
-    @JsonBackReference
+
     private List<Options> options;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -34,8 +34,6 @@ public class OrderProduct {
     public OrderProduct(){
 
     }
-
-
 
 
     public long getId() {
