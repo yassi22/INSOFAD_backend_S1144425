@@ -93,9 +93,25 @@ public class ProductController {
     }
 
 
-    @PostMapping ("/variants-options")
+    @PostMapping ("/deleteVariants")
     public ResponseEntity<String> deleteVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
             this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
             return ResponseEntity.ok("Product variant and options deleted ");
     }
+
+    @PostMapping("/{productId}/addVariants")
+    public ResponseEntity<String> AddVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
+        this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
+        return ResponseEntity.ok("Product variant and options deleted ");
+    }
+
+
+    @PostMapping ("/{productId}/updateVariants")
+    public ResponseEntity<String> updateVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
+        this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
+        return ResponseEntity.ok("Product variant and options deleted ");
+    }
+
+
+
 }
