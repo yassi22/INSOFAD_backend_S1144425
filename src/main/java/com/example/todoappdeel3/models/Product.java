@@ -147,7 +147,6 @@ public class Product {
         this.variants = variants;
     }
 
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -167,4 +166,6 @@ public class Product {
     public void setOrderProducts(List<OrderProduct> orderProducts) {
         this.orderProducts = orderProducts;
     }
+
+
 }

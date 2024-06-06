@@ -19,6 +19,7 @@ public class ProductVariantDTO {
         this.name = name;
         this.description = description;
         this.options = options;
+        this.id = id;
     }
 
 

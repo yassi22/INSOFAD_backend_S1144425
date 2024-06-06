@@ -1,8 +1,7 @@
 package com.example.todoappdeel3.dao;
 
 
-import com.example.todoappdeel3.dto.DeleteVariantOptionsDTO;
-import com.example.todoappdeel3.dto.ProductDTO;
+import com.example.todoappdeel3.dto.*;
 import com.example.todoappdeel3.models.Category;
 import com.example.todoappdeel3.models.Options;
 import com.example.todoappdeel3.models.Product;
@@ -13,8 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class ProductDAO {
@@ -166,6 +164,60 @@ public class ProductDAO {
         }
 
     }
+
+    public void AddVariantOptions(Long productId, ProductDTO productDTO){
+       Product product = this.productRepository.findById(productId).orElseThrow(() -> new NoSuchElementException("No Product Found"));
+
+
+
+            Set<ProductVariant> productVariants = new HashSet<>();
+
+            for(ProductVariantDTO variantDTO: productDTO.variants){
+                ProductVariant variant = new ProductVariant(variantDTO.id, variantDTO.name, variantDTO.description, product);
+                Set<Options> optionsList = new HashSet<>();
+
+                for(OptionsDTO optionsDTO : variantDTO.options) {
+                    Options options = new Options(optionsDTO.name, optionsDTO.added_price, variant);
+                    optionsList.add(options);
+                }
+
+                variant.setOptions(optionsList);
+                productVariants.add(variant);
+
+            }
+
+            product.setVariants(productVariants);
+
+            ProductVariant newVariant = productVariants.stream().max(Comparator.comparingLong(ProductVariant::getId)).orElseThrow(() -> new NoSuchElementException("No id found"));
+            newVariant.setId(0);
+            this.productVariantRepository.save(newVariant);
+
+            for(Options options : newVariant.options){
+                this.optionsRepository.save(options);
+            }
+
+
+           this.productRepository.save(product);
+
+
+
+    }
+
+
+
+    public void updateVariantOptions(Long id, UpdateVariantOptionsDTO updateVariantOptionsDTO){
+        Optional<Product> product = this.productRepository.findById(id);
+
+        if(product.isPresent()){
+
+        }  else {
+
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product does not exists");
+        }
+
+    }
+
+
 
     public List<Product> findAll(){
         return productRepository.findAll();

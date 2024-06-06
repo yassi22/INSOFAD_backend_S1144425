@@ -7,9 +7,9 @@ public class OptionsDTO {
 
     public String name;
 
-    public String added_price;
+    public double added_price;
 
-    public OptionsDTO(long id,String name, String added_price) {
+    public OptionsDTO(long id,String name, double added_price) {
         this.id = id;
         this.name = name;
         this.added_price = added_price;

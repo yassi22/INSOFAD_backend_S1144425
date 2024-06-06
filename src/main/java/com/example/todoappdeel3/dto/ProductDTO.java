@@ -19,10 +19,10 @@ public class ProductDTO {
     public String imageUrl;
     public Integer quantity;
 
-    public List<ProductVariantDTO> variants;
+    public Set<ProductVariantDTO> variants;
 
 
-    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageUrl, Integer quantity, List<ProductVariantDTO> variants) {
+    public ProductDTO(String name, String description, double price, String durability, String fitting, String imageUrl, Integer quantity, Set<ProductVariantDTO> variants) {
         this.name = name;
         this.description = description;
         this.price = price;

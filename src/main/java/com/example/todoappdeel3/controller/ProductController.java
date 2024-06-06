@@ -3,9 +3,9 @@ package com.example.todoappdeel3.controller;
 
 import com.example.todoappdeel3.dao.ProductDAO;
 import com.example.todoappdeel3.dao.ProductRepository;
-import com.example.todoappdeel3.dto.DeleteVariantOptionsDTO;
-import com.example.todoappdeel3.dto.ProductDTO;
+import com.example.todoappdeel3.dto.*;
 import com.example.todoappdeel3.models.Product;
+import org.hibernate.sql.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -100,18 +100,17 @@ public class ProductController {
     }
 
     @PostMapping("/{productId}/addVariants")
-    public ResponseEntity<String> AddVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
-        this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
-        return ResponseEntity.ok("Product variant and options deleted ");
+    public ResponseEntity<String> AddVariantOptions(@PathVariable Long productId, @RequestBody ProductDTO productDTO){
+        this.productDAO.AddVariantOptions(productId, productDTO);
+        return ResponseEntity.ok("Product variant and options are added to a product ");
     }
 
 
-    @PostMapping ("/{productId}/updateVariants")
-    public ResponseEntity<String> updateVariantOptions(@RequestBody DeleteVariantOptionsDTO deleteVariantOptionsDTO){
-        this.productDAO.deleteVariantOptions(deleteVariantOptionsDTO);
+    @PutMapping ("/{productId}/updateVariants")
+    public ResponseEntity<String> updateVariantOptions(@PathVariable Long id, @RequestBody UpdateVariantOptionsDTO updateVariantOptionsDTO){
+        this.productDAO.updateVariantOptions(id, updateVariantOptionsDTO);
         return ResponseEntity.ok("Product variant and options deleted ");
     }
-
 
 
 }

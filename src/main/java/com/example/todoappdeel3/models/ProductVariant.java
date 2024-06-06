@@ -41,6 +41,15 @@ public class ProductVariant {
         this.product = product;
     }
 
+    public ProductVariant(long id, String name, String description, Product product) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.product = product;
+    }
+
+
+
     public ProductVariant(){
 
     }
