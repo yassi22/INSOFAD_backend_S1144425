@@ -123,6 +123,7 @@ public class ProductDAO {
         if (product.isPresent()){
             product.get().setName(productDTO.name);
             product.get().setDescription(productDTO.description);
+            product.get().setQuantity(productDTO.quantity);
 
             this.productRepository.save(product.get());
         }

@@ -63,11 +63,11 @@ public class ProductController {
 //    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
-        this.productDAO.updateProduct(id, productDTO);
+    @PostMapping("/{productId}/updateproduct")
+    public ResponseEntity<String> updateProduct(@PathVariable Long productId, @RequestBody ProductDTO productDTO){
+        this.productDAO.updateProduct(productId, productDTO);
 
-        return ResponseEntity.ok("Updated product with id" + id);
+        return ResponseEntity.ok("Updated product with id" + productId);
     }
 
     @PutMapping("check/{id}")
