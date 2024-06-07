@@ -96,7 +96,7 @@ public class ProductDAOTest {
     }
 
     @Test
-    public void testGetProduct() {
+    public void testGetProductId() {
         // Arrange
         long productId = 1L;
         Product product = new Product();
