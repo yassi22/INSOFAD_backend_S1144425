@@ -65,7 +65,7 @@ public class ProductController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
-        this.productDAO.updateProduct(productDTO, id);
+        this.productDAO.updateProduct(id, productDTO);
 
         return ResponseEntity.ok("Updated product with id" + id);
     }
@@ -106,10 +106,10 @@ public class ProductController {
     }
 
 
-    @PutMapping ("/{productId}/updateVariants")
-    public ResponseEntity<String> updateVariantOptions(@PathVariable Long id, @RequestBody UpdateVariantOptionsDTO updateVariantOptionsDTO){
-        this.productDAO.updateVariantOptions(id, updateVariantOptionsDTO);
-        return ResponseEntity.ok("Product variant and options deleted ");
+    @PostMapping ("/{productId}/updateVariants")
+    public ResponseEntity<String> updateVariantOptions(@PathVariable Long productId, @RequestBody ProductDTO productDTO){
+        this.productDAO.updateProductVariant(productId, productDTO);
+        return ResponseEntity.ok("Product variant and options updated ");
     }
 
 

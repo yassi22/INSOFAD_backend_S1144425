@@ -117,12 +117,12 @@ public class ProductDAO {
         this.productRepository.save(product);
     }
 
-    public void updateProduct(ProductDTO productDTO, Long id){
+    public void updateProduct(Long id, ProductDTO productDTO){
         Optional<Product> product = this.productRepository.findById(id);
 
         if (product.isPresent()){
-            product.get().setDescription(productDTO.description);
             product.get().setName(productDTO.name);
+            product.get().setDescription(productDTO.description);
 
             this.productRepository.save(product.get());
         }
@@ -165,58 +165,56 @@ public class ProductDAO {
 
     }
 
-    public void AddVariantOptions(Long productId, ProductDTO productDTO){
-       Product product = this.productRepository.findById(productId).orElseThrow(() -> new NoSuchElementException("No Product Found"));
+    public void AddVariantOptions(Long productId, ProductDTO productDTO) {
+        Product product = this.productRepository.findById(productId).orElseThrow(() -> new NoSuchElementException("No Product Found"));
 
+        Set<ProductVariant> productVariants = prepareProductVariants(product, productDTO);
 
+        product.setVariants(productVariants);
 
-            Set<ProductVariant> productVariants = new HashSet<>();
+        ProductVariant newVariant = productVariants.stream().max(Comparator.comparingLong(ProductVariant::getId)).orElseThrow(() -> new NoSuchElementException("No id found"));
+        newVariant.setId(0);
+        this.productVariantRepository.save(newVariant);
 
-            for(ProductVariantDTO variantDTO: productDTO.variants){
-                ProductVariant variant = new ProductVariant(variantDTO.id, variantDTO.name, variantDTO.description, product);
-                Set<Options> optionsList = new HashSet<>();
-
-                for(OptionsDTO optionsDTO : variantDTO.options) {
-                    Options options = new Options(optionsDTO.name, optionsDTO.added_price, variant);
-                    optionsList.add(options);
-                }
-
-                variant.setOptions(optionsList);
-                productVariants.add(variant);
-
-            }
-
-            product.setVariants(productVariants);
-
-            ProductVariant newVariant = productVariants.stream().max(Comparator.comparingLong(ProductVariant::getId)).orElseThrow(() -> new NoSuchElementException("No id found"));
-            newVariant.setId(0);
-            this.productVariantRepository.save(newVariant);
-
-            for(Options options : newVariant.options){
-                this.optionsRepository.save(options);
-            }
-
-
-           this.productRepository.save(product);
-
-
-
-    }
-
-
-
-    public void updateVariantOptions(Long id, UpdateVariantOptionsDTO updateVariantOptionsDTO){
-        Optional<Product> product = this.productRepository.findById(id);
-
-        if(product.isPresent()){
-
-        }  else {
-
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product does not exists");
+        for (Options options : newVariant.getOptions()) {
+            this.optionsRepository.save(options);
         }
 
+        this.productRepository.save(product);
     }
 
+    public void updateProductVariant(Long productId, ProductDTO productDTO) {
+        Product product = this.productRepository.findById(productId).orElseThrow(() -> new NoSuchElementException("No Product Found"));
+
+        Set<ProductVariant> productVariants = prepareProductVariants(product, productDTO);
+
+        for (ProductVariant variant : productVariants) {
+            this.productVariantRepository.save(variant);
+
+            for (Options options : variant.getOptions()) {
+                this.optionsRepository.save(options);
+            }
+        }
+    }
+
+    private Set<ProductVariant> prepareProductVariants(Product product, ProductDTO productDTO) {
+        Set<ProductVariant> productVariants = new HashSet<>();
+
+        for (ProductVariantDTO variantDTO : productDTO.getVariants()) {
+            ProductVariant variant = new ProductVariant(variantDTO.getId(), variantDTO.getName(), variantDTO.getDescription(), product);
+            Set<Options> optionsList = new HashSet<>();
+
+            for (OptionsDTO optionsDTO : variantDTO.getOptions()) {
+                Options options = new Options(optionsDTO.getName(), optionsDTO.getAdded_price(), variant);
+                optionsList.add(options);
+            }
+
+            variant.setOptions(optionsList);
+            productVariants.add(variant);
+        }
+
+        return productVariants;
+    }
 
 
     public List<Product> findAll(){

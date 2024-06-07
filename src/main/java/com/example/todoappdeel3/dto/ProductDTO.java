@@ -35,5 +35,75 @@ public class ProductDTO {
 
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDurability() {
+        return durability;
+    }
+
+    public void setDurability(String durability) {
+        this.durability = durability;
+    }
+
+    public String getFitting() {
+        return fitting;
+    }
+
+    public void setFitting(String fitting) {
+        this.fitting = fitting;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Set<ProductVariantDTO> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(Set<ProductVariantDTO> variants) {
+        this.variants = variants;
+    }
 }

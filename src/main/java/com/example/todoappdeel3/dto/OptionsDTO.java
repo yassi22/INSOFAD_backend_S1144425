@@ -15,5 +15,27 @@ public class OptionsDTO {
         this.added_price = added_price;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getAdded_price() {
+        return added_price;
+    }
+
+    public void setAdded_price(double added_price) {
+        this.added_price = added_price;
+    }
 }
