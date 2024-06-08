@@ -153,7 +153,7 @@ public class ProductDAO {
     public void deleteVariantOptions( DeleteVariantOptionsDTO deleteVariantOptionsDTO){
 
         for(long options_id : deleteVariantOptionsDTO.option_ids) {
-            this.productVariantRepository.deleteById(options_id);
+            this.optionsRepository.deleteById(options_id);
         }
 
         for(long variant_id : deleteVariantOptionsDTO.variant_ids) {
