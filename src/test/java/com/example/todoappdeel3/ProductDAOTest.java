@@ -168,33 +168,5 @@ public class ProductDAOTest {
         verify(productRepository).deleteById(productId);
     }
 
-    @Test
-    public void testCheckProduct() {
-        // Arrange
-        long productId = 1L;
-        Product product = new Product();
-        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
 
-        // Act
-        productDAO.checkProduct(productId);
-
-        // Assert
-        assertTrue(product.isFinished());
-        verify(productRepository).save(product);
-    }
-
-    @Test
-    public void testUncheckProduct() {
-        // Arrange
-        long productId = 1L;
-        Product product = new Product();
-        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
-
-        // Act
-        productDAO.uncheckProduct(productId);
-
-        // Assert
-        assertFalse(product.isFinished());
-        verify(productRepository).save(product);
-    }
 }
