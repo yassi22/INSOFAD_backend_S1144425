@@ -2,10 +2,7 @@ package com.example.todoappdeel3.dao;
 
 
 import com.example.todoappdeel3.dto.*;
-import com.example.todoappdeel3.models.Category;
-import com.example.todoappdeel3.models.Options;
-import com.example.todoappdeel3.models.Product;
-import com.example.todoappdeel3.models.ProductVariant;
+import com.example.todoappdeel3.models.*;
 import jakarta.transaction.Transactional;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.http.HttpStatus;
@@ -22,13 +19,16 @@ public class ProductDAO {
     private final ProductVariantRepository productVariantRepository;
     private final OptionsRepository optionsRepository;
 
+    private final OrderProductVariantRepository orderProductRepository;
 
 
-    public ProductDAO(ProductRepository repository, CategoryRepository category, ProductVariantRepository productVariantRepository, OptionsRepository optionsRepository) {
+
+    public ProductDAO(ProductRepository repository, CategoryRepository category, ProductVariantRepository productVariantRepository, OptionsRepository optionsRepository, OrderProductVariantRepository orderProductRepository) {
         this.productRepository = repository;
         this.categoryRepository = category;
         this.productVariantRepository = productVariantRepository;
         this.optionsRepository = optionsRepository;
+        this.orderProductRepository = orderProductRepository;
 
     }
 
@@ -64,6 +64,8 @@ public class ProductDAO {
         }
 
     }
+
+
 
     public boolean changeQuantityProduct(long id ){
         Product product = getProduct(id);

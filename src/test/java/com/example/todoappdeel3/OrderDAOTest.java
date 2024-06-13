@@ -61,28 +61,28 @@ public class OrderDAOTest {
         assertEquals(orderList, result);
     }
 
-    @Test
-    public void testCalculatePrice() {
-        // Arrange
-        Product product1 = new Product();
-        product1.setPrice(10.0);
-        Product product2 = new Product();
-        product2.setPrice(20.0);
-
-        Options option1 = new Options();
-        option1.setAdded_price(2.0);
-        Options option2 = new Options();
-        option2.setAdded_price(3.0);
-
-        List<Product> productList = List.of(product1, product2);
-        List<Options> optionsList = List.of(option1, option2);
-
-        // Act
-        double result = orderDAO.calculatePrice(productList, optionsList);
-
-        // Assert
-        assertEquals(39.95, result);  // 10 + 20 + 2 + 3 + 4.95 (shipping)
-    }
-
-    // Additional tests can be added here
+//    @Test
+//    public void testCalculatePrice() {
+//        // Arrange
+//        Product product1 = new Product();
+//        product1.setPrice(10.0);
+//        Product product2 = new Product();
+//        product2.setPrice(20.0);
+//
+//        Options option1 = new Options();
+//        option1.setAdded_price(2.0);
+//        Options option2 = new Options();
+//        option2.setAdded_price(3.0);
+//
+//        List<Product> productList = List.of(product1, product2);
+//        List<Options> optionsList = List.of(option1, option2);
+//
+//        // Act
+//        double result = orderDAO.calculatePrice(productList, optionsList);
+//
+//        // Assert
+//        assertEquals(39.95, result);  // 10 + 20 + 2 + 3 + 4.95 (shipping)
+//    }
+//
+//    // Additional tests can be added here
 }

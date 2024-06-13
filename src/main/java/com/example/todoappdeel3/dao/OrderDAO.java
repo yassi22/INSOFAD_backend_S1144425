@@ -29,20 +29,39 @@ public class OrderDAO {
 
     private final OptionsDAO optionsDAO;
 
+    private final OrderOptionsDAO orderOptionsDAO;
 
-    public OrderDAO(OrderRepository orderRepository, ProductDAO productDAO, UserRepository userRepository, ProductService productService, CategoryDAO categoryDAO, OptionsDAO optionsDAO) {
+    private final OrderOptionsRepository orderOptionsRepository;
+
+    private final ProductVariantDAO productVariantDAO;
+
+    private final OrderProductVariantDAO orderProductVariantDAO;
+
+    private final OrderProductVariantRepository orderProductVariantRepository;
+
+    private final OrderProductRepository orderProductRepository;
+
+
+    public OrderDAO(OrderRepository orderRepository, ProductDAO productDAO, UserRepository userRepository, ProductService productService, CategoryDAO categoryDAO, OptionsDAO optionsDAO,
+                    ProductVariantDAO productVariantDAO, OrderProductVariantDAO orderProductVariantDAO, OrderProductVariantRepository orderProductVariantRepository, OrderProductRepository orderProductRepository,
+     OrderOptionsDAO orderOptionsDAO, OrderOptionsRepository orderOptionsRepository) {
         this.orderRepository = orderRepository;
         this.productDAO = productDAO;
         this.userRepository = userRepository;
         this.productService = productService;
         this.categoryDAO = categoryDAO;
         this.optionsDAO = optionsDAO;
+        this.productVariantDAO = productVariantDAO;
+        this.orderProductVariantDAO = orderProductVariantDAO;
+        this.orderProductVariantRepository = orderProductVariantRepository;
+        this.orderProductRepository = orderProductRepository;
+        this.orderOptionsDAO = orderOptionsDAO;
+        this.orderOptionsRepository = orderOptionsRepository;
     }
 
     public List<Order> getAllOrders() {
         return this.orderRepository.findAll();
     }
-
 
 
     @Transactional
@@ -52,39 +71,87 @@ public class OrderDAO {
 
         List<OrderProduct> orderProducts = new ArrayList<>();
 
-        List<Options> totalOptionsList = new ArrayList<>();
+        List<OrderProductVariant> totalOrderProductVariantList = new ArrayList<>();
+
+        List<OrderOptions> totalOrderOptionsList = new ArrayList<>();
 
 
         System.out.println(orderDTO.products);
         for (ProductDTO productJson : orderDTO.products) {
             System.out.println(productJson);
-//            Product product = new Product(productJson.name,productJson.description,productJson.price,null, productJson.durability, productJson.fitting,productJson.imageUrl, productJson.quantity);
             Product product = productDAO.getProduct(productJson.id);
+
+            OrderProduct orderProduct = new OrderProduct(product);
 
             productDAO.changeQuantityProduct(productJson.id);
 
 
             productList.add(product);
-            List<Options> optionsList = new ArrayList<>();
+            List<OrderProductVariant> orderProductVariantList = new ArrayList<>();
             for (ProductVariantDTO productVariantJson : productJson.variants) {
+                List<OrderOptions> orderOptionsList = new ArrayList<>();
+                // Ontvang de productVariant van productJson.
+                 ProductVariant productVariant = productVariantDAO.getProductVariant(productVariantJson.id);
+                 OrderProductVariant orderProductVariant = orderProductVariantDAO.convertProductVariantToOrderProductVariant(productVariant, orderProduct);
+
+                // Converteer productVariant naar OrderProductVariant.
                 for (OptionsDTO optionsJson : productVariantJson.options) {
                     Options option = optionsDAO.getOption(optionsJson.id);
-                    optionsList.add(option);
-                    totalOptionsList.add(option);
+                    OrderOptions orderOptions = orderOptionsDAO.convertOptionToOrderOption(option, orderProductVariant);
+
+                    orderOptionsList.add(orderOptions);
+                    totalOrderOptionsList.add(orderOptions);
                 }
+                orderProductVariant.setOrderOptions(orderOptionsList);
+                orderProductVariantList.add(orderProductVariant);
+                totalOrderProductVariantList.add(orderProductVariant);
             }
 
-            orderProducts.add(new OrderProduct(product, optionsList));
+            orderProduct.setOrderProductVariants(orderProductVariantList);
+            orderProducts.add(orderProduct);
         }
 
+//        for(OrderProduct orderProduct : orderProducts ) {
+//            orderProductRepository.saveAndFlush(orderProduct);
+//        }
+//
+//        for(OrderProductVariant orderProductVariant : totalOrderProductVariantList) {
+//            orderProductVariantRepository.saveAndFlush(orderProductVariant);
+//        }
+//
+//        for(OrderOptions orderOptions : totalOrderOptionsList){
+//            orderOptionsRepository.saveAndFlush(orderOptions);
+//        }
 
-        Order order = new Order(productService.makeName(productList), calculatePrice(productList, totalOptionsList), LocalDateTime.now(), orderProducts);
+
+        System.out.println("test buiten de for loop");
+
+
+        Order order = new Order(productService.makeName(productList), calculatePrice(productList, totalOrderOptionsList), LocalDateTime.now());
         order.setCustomUser(userRepository.findByEmail(orderDTO.email));
         this.orderRepository.saveAndFlush(order);
 
-    }
+        for(OrderOptions orderOptions : totalOrderOptionsList){
+            orderOptionsRepository.save(orderOptions);
+        }
 
-    public double calculatePrice(List<Product> productList, List<Options> optionsList){
+
+        for(OrderProductVariant orderProductVariant : totalOrderProductVariantList) {
+        orderProductVariantRepository.save(orderProductVariant);
+        }
+
+        for(OrderProduct orderProduct : orderProducts ) {
+            orderProduct.setOrder(order);
+            orderProductRepository.save(orderProduct);
+        }
+
+        order.setOrderProducts(orderProducts);
+        this.orderRepository.save(order);
+
+        }
+
+
+    public double calculatePrice(List<Product> productList, List<OrderOptions> orderOptionsList){
         double totalPrice = 0.0;
         double shippingPrice = 4.95;
 
@@ -92,8 +159,8 @@ public class OrderDAO {
             totalPrice += product.getPrice();
         }
 
-        for(Options options : optionsList) {
-            totalPrice += options.getAdded_price();
+        for(OrderOptions orderOptions : orderOptionsList) {
+            totalPrice += orderOptions.getAdded_price();
 
         }
 
@@ -103,5 +170,5 @@ public class OrderDAO {
 
     }
 
+    }
 
-}

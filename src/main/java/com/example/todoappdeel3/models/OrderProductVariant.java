@@ -4,13 +4,14 @@ package com.example.todoappdeel3.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.springframework.lang.Nullable;
+import com.example.todoappdeel3.models.OrderOptions;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
-public class ProductVariant {
+@Table(name = "OrderProductVariant")
+public class OrderProductVariant {
 
     @Id
     @GeneratedValue
@@ -23,33 +24,33 @@ public class ProductVariant {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference
-    private Product product;
+    private OrderProduct orderProduct;
 
     @ManyToMany
     @JsonBackReference
     private List<Order> order;
 
 
-    @OneToMany(mappedBy = "productVariant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "orderProductVariant", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    public Set<Options> options;
+    public List<OrderOptions> orderOptions;
 
 
-    public ProductVariant(String name, String description, Product product) {
+    public OrderProductVariant(String name, String description, OrderProduct orderProduct) {
         this.name = name;
         this.description = description;
-        this.product = product;
+        this.orderProduct = orderProduct;
     }
 
-    public ProductVariant(long id, String name, String description, Product product) {
+    public OrderProductVariant(long id, String name, String description, OrderProduct orderProduct) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.product = product;
+        this.orderProduct = orderProduct;
     }
 
 
-    public ProductVariant(){
+    public OrderProductVariant(){
 
     }
 
@@ -77,20 +78,20 @@ public class ProductVariant {
         this.description = description;
     }
 
-    public Product getProduct() {
-        return product;
+    public OrderProduct getOrderProduct() {
+        return orderProduct;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setOrderProduct(OrderProduct orderProduct) {
+        this.orderProduct = orderProduct;
     }
 
-    public Set<Options> getOptions() {
-        return options;
+    public List<OrderOptions> getOrderOptions() {
+        return orderOptions;
     }
 
-    public void setOptions(Set<Options> options) {
-        this.options = options;
+    public void setOrderOptions(List<OrderOptions> orderOptions) {
+        this.orderOptions = orderOptions;
     }
 
     public List<Order> getOrder() {
@@ -103,3 +104,4 @@ public class ProductVariant {
 
 
 }
+

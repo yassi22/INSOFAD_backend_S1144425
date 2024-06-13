@@ -17,18 +17,26 @@ public class OrderProduct {
     @JsonBackReference
     private Product product;
 
-    @ManyToMany
+    private String imageUrl;
 
-    private List<Options> options;
+    @OneToMany
+    private List<OrderProductVariant> orderProductVariants;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     private Order order;
 
 
-    public OrderProduct(Product product, List<Options> options) {
+    public OrderProduct(Product product,  List<OrderProductVariant> orderProductVariants) {
         this.product = product;
-        this.options = options;
+        this.orderProductVariants = orderProductVariants;
+        this.imageUrl = product.getImageURL();
+    }
+
+    public OrderProduct(Product product) {
+        this.product = product;
+        this.imageUrl = product.getImageURL();
+
     }
 
     public OrderProduct(){
@@ -52,13 +60,6 @@ public class OrderProduct {
         this.product = product;
     }
 
-    public List<Options> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<Options> options) {
-        this.options = options;
-    }
 
     public Order getOrder() {
         return order;
@@ -68,6 +69,19 @@ public class OrderProduct {
         this.order = order;
     }
 
+    public List<OrderProductVariant> getOrderProductVariants() {
+        return orderProductVariants;
+    }
 
+    public void setOrderProductVariants(List<OrderProductVariant> orderProductVariants) {
+        this.orderProductVariants = orderProductVariants;
+    }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

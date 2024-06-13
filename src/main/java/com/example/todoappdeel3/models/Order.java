@@ -41,6 +41,13 @@ public class Order {
         this.orderProducts = orderProducts;
     }
 
+    public Order(String orderTitle, double orderPrice, LocalDateTime datum    ) {
+        this.orderTitle = orderTitle;
+        this.orderPrice = orderPrice;
+        this.datum = datum;
+    }
+
+
     public CustomUser getCustomUser() {
         return customUser;
     }
