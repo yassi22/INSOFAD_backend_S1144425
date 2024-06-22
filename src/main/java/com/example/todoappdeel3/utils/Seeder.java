@@ -36,160 +36,60 @@ public class Seeder {
     }
 
     private void seedProducts(){
-        // Luxe categorieën aanhouden
+        // Luxe categorieën aanmaken
         Category categoryHoodies = new Category("Luxury Hoodies");
         Category categoryPants = new Category("Designer Pants");
         Category categoryAccessories = new Category("Exclusive Accessories");
         Category categoryCapsAndBeanies = new Category("Designer Headwear");
         Category categoryOuterwear = new Category("Premium Outerwear");
 
-// Luxe producten definiëren
-        Product product1 = new Product("Cashmere Hoodie", "Crafted from 100% pure cashmere, this hoodie offers unparalleled softness and warmth, ideal for those who seek both comfort and luxury.", 400.00, categoryHoodies, "A+", "Tailored Fit", "https://cdn2.propercloth.com/pic_sp/1835_4507bda8842e6cdf2484d62e3eb77635_size5.jpg", 5);
-        Product product2 = new Product("Silk Hoodie", "Experience the smooth touch of pure silk with this hoodie, combining casual design with luxury fabric for a sophisticated, relaxed look.", 350.00, categoryHoodies, "A++", "Tailored Fit", "https://coldcultureworldwide.com/cdn/shop/files/Product09_Aentamanogrande.png?v=1708614327&width=1080", 7);
-        Product product11 = new Product("White Wool Hoodie", "Made from fine wool, this white hoodie blends comfort with elegance, perfect for a subtle, stylish statement.", 320.00, categoryHoodies, "A++",  "Tailored Fit", "imageURL" , 8);
+        // Luxe producten definiëren
+        Product[] products = {
+                new Product("Cashmere Hoodie", "Crafted from 100% pure cashmere, this hoodie offers unparalleled softness and warmth, ideal for those who seek both comfort and luxury.", 400.00, categoryHoodies, "A+", "Tailored Fit", "https://image-resizing.booztcdn.com/filippa-k/fk28929_cgreymelan_v1448.webp?has_grey=1&has_webp=1&size=source\n", 5),
+                new Product("Silk Hoodie", "Experience the smooth touch of pure silk with this hoodie, combining casual design with luxury fabric for a sophisticated, relaxed look.", 350.00, categoryHoodies, "A++", "Tailored Fit", "https://www.globalblank.com/cdn/shop/products/PRM4500TD-AQUABLUE-1_590x.png?v=1611605760\n", 7),
+                new Product("White Wool Hoodie", "Made from fine wool, this white hoodie blends comfort with elegance, perfect for a subtle, stylish statement.", 320.00, categoryHoodies, "A++",  "Tailored Fit", "https://statb.jrmstatic.com/gran-sasso-cardigan-wool-hoodie-vest-off-white-iz22a6nu7voplwa9.jpg\n", 8),
+                new Product("Italian Leather Pants", "Tailored from premium Italian leather, these pants offer a perfect blend of luxury and durability, tailored for the fashion-forward.", 700.00, categoryPants, "A+", "Slim Fit", "https://www.alyxstudio.com/cdn/shop/files/AAWPA0413LE01_BLK0001_F23_2_1024x.png?v=1695285925\n", 1),
+                new Product("Suede Cargo Pants", "Elevate your style with these soft suede cargo pants, offering both comfort and a bold fashion statement.", 650.00, categoryPants, "A+", "Relaxed Fit", "https://designmenswear.com/cdn/shop/products/OliveCargoElasticBottomJagger2PocketsWithZipperSLIM-FITMadeInTurkey_720x.png?v=1666415226\n", 3),
+                new Product("Velvet Parachute Pants", "These parachute pants crafted from premium velvet redefine luxury in streetwear with their unique texture and comfort.", 600.00, categoryPants, "A++", "Over-sized", "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/1c395707d48f63fc98d61cde51cda969/2dadf51c-0cce-4ab0-bfc9-c9f151ff79be.jpg\n", 7),
+                new Product("Leather Satchel Bag", "Handcrafted from the finest leather, this satchel is a masterpiece of luxury accessories, perfect for the discerning individual.", 950.00, categoryAccessories, "A+", "30cm x 35cm", "https://cdn.webshopapp.com/shops/270371/files/345410622/1600x2048x2/hillburry-leather-bags-hillburry-unisex-leather-sh.jpg\n", 1),
+                new Product("Exotic Skin Clutch Bag", "This clutch made from exotic animal skin stands out as a symbol of luxury and exclusivity, perfect for high-class events.", 1100.00, categoryAccessories, "A+", "25cm x 15cm", "https://cdn11.bigcommerce.com/s-mim05/images/stencil/1280x1280/products/1585/5867/G1-067-2__11422.1425428430.jpg?c=2\n", 1),
+                new Product("Gold-Plated Keychain", "A stunning gold-plated keychain that combines utility with opulence, making it an essential luxury for everyday elegance.", 200.00, categoryAccessories, "A+", "8cm", "https://i.etsystatic.com/7744338/r/il/f5e3e7/544844798/il_fullxfull.544844798_fp59.jpg\n", 7),
+                new Product("Merino Wool Beanie", "Crafted from 100% merino wool, this beanie provides exceptional warmth and style, making it a must-have accessory for any luxury wardrobe.", 120.00, categoryCapsAndBeanies, "A++", "Fitted", "https://www.rustek.co/cdn/shop/products/doubleribmerinobeanietan-570027.png?v=1699814689&width=823\n", 2),
+                new Product("Cashmere Flat Cap", "Made from soft cashmere, this flat cap offers a timeless look with luxurious comfort, perfect for stylish outdoor adventures.", 150.00, categoryCapsAndBeanies, "A++", "Fitted", "https://cdn.shoplightspeed.com/shops/632556/files/47966488/750x2000x3/classic-eb-191-wool-cashmere-cap-city-sport.jpg\n", 5),
+                new Product("Silk Bucket Hat", "This silk bucket hat combines casual style with a touch of luxury, ideal for those who appreciate fine fabrics and contemporary design.", 180.00, categoryCapsAndBeanies, "A++", "Fitted", "https://sissel-edelbo.dk/cdn/shop/files/SE642.1-237_1000x.webp?v=1715326855\n", 8)
+        };
 
-        Product product3 = new Product("Italian Leather Pants", "Tailored from premium Italian leather, these pants offer a perfect blend of luxury and durability, tailored for the fashion-forward.", 700.00, categoryPants, "A+", "Slim Fit", "imageURL", 1);
-        Product product4 = new Product("Suede Cargo Pants", "Elevate your style with these soft suede cargo pants, offering both comfort and a bold fashion statement.", 650.00, categoryPants, "A+", "Relaxed Fit", "imageURL", 3);
-        Product product12 = new Product("Velvet Parachute Pants", "These parachute pants crafted from premium velvet redefine luxury in streetwear with their unique texture and comfort.", 600.00, categoryPants, "A++", "Over-sized", "imageURL", 7);
+        // Producten opslaan
+        for (Product product : products) {
+            this.productDAO.createProduct(product);
+        }
 
-        Product product5 = new Product("Leather Satchel Bag", "Handcrafted from the finest leather, this satchel is a masterpiece of luxury accessories, perfect for the discerning individual.", 950.00, categoryAccessories, "A+",   "30cm x 35cm", "imageURL", 1);
-        Product product6 = new Product("Exotic Skin Clutch Bag", "This clutch made from exotic animal skin stands out as a symbol of luxury and exclusivity, perfect for high-class events.", 1100.00, categoryAccessories, "A+",   "25cm x 15cm", "imageURL"  , 1);
-        Product product13 = new Product("Gold-Plated Keychain", "A stunning gold-plated keychain that combines utility with opulence, making it an essential luxury for everyday elegance.", 200.00, categoryAccessories, "A+",   "8cm", "imageURL"  , 7);
-
-        Product product7 = new Product("Merino Wool Beanie", "Crafted from 100% merino wool, this beanie provides exceptional warmth and style, making it a must-have accessory for any luxury wardrobe.", 120.00, categoryCapsAndBeanies, "A++", "Fitted", "imageURL", 2);
-        Product product8 = new Product("Cashmere Flat Cap", "Made from soft cashmere, this flat cap offers a timeless look with luxurious comfort, perfect for stylish outdoor adventures.", 150.00, categoryCapsAndBeanies, "A++", "Fitted", "imageURL", 5);
-        Product product14 = new Product("Silk Bucket Hat", "This silk bucket hat combines casual style with a touch of luxury, ideal for those who appreciate fine fabrics and contemporary design.", 180.00, categoryCapsAndBeanies, "A++",  "Fitted", "imageURL", 8);
-
-
-        this.productDAO.createProduct(product1);
-        this.productDAO.createProduct(product2);
-        this.productDAO.createProduct(product3);
-        this.productDAO.createProduct(product4);
-        this.productDAO.createProduct(product5);
-        this.productDAO.createProduct(product6);
-        this.productDAO.createProduct(product7);
-        this.productDAO.createProduct(product8);
-        this.productDAO.createProduct(product11);
-        this.productDAO.createProduct(product12);
-        this.productDAO.createProduct(product13);
-        this.productDAO.createProduct(product14);
-
+        // Categorieën opslaan
         this.categoryDAO.createCategory(categoryHoodies);
         this.categoryDAO.createCategory(categoryPants);
         this.categoryDAO.createCategory(categoryAccessories);
         this.categoryDAO.createCategory(categoryCapsAndBeanies);
         this.categoryDAO.createCategory(categoryOuterwear);
 
-        ProductVariant productVariant = new ProductVariant(
-                "Grootte",
-                "De grootte van een hoodie",
-                product1
-        );
+        // Varianten en opties definiëren
+        String[] variantNames = {"Grootte", "Kleur", "Print"};
+        String[][] options = {
+                {"S", "M", "L"},
+                {"Red", "Blue", "Black"},
+                {"Grote Print", "Medium Print", "Small Print"}
+        };
 
-        ProductVariant productVariant2 = new ProductVariant(
-                "Kleur",
-                "De kleur van de hoodie",
-                product1
-        );
+        for (Product product : products) {
+            for (int i = 0; i < variantNames.length; i++) {
+                ProductVariant variant = new ProductVariant(variantNames[i], "De " + variantNames[i].toLowerCase() + " van de " + product.getName(), product);
+                this.productVariantRepository.save(variant);
 
-        ProductVariant productVariant3 = new ProductVariant(
-                "Print",
-                "De print van de hoodie",
-                product1
-        );
-
-
-
-        this.productVariantRepository.save(productVariant);
-
-        this.productVariantRepository.save(productVariant2);
-
-        this.productVariantRepository.save(productVariant3);
-
-        Options optionS = new Options("S", 100, productVariant);
-        Options optionM = new Options("M", 150, productVariant);
-        Options optionL = new Options("L", 200, productVariant);
-        Options optionXL = new Options("XL", 300, productVariant);
-
-        Options optionRed = new Options("Red", 100, productVariant2);
-        Options optionBlue = new Options("Blue", 150, productVariant2);
-        Options optionBlack = new Options("Black", 200, productVariant2);
-
-        Options optionPrintOne = new Options("Grote Print",200 , productVariant3);
-        Options optionPrintTwo = new Options("Medium Print", 100, productVariant3);
-        Options optionPrintThree = new Options("Small Print", 50, productVariant3);
-
-
-        this.optionsRepository.save(optionS);
-        this.optionsRepository.save(optionM);
-        this.optionsRepository.save(optionL);
-        this.optionsRepository.save(optionXL);
-
-
-        this.optionsRepository.save(optionRed);
-        this.optionsRepository.save(optionBlue);
-        this.optionsRepository.save(optionBlack);
-
-        this.optionsRepository.save(optionPrintOne);
-        this.optionsRepository.save(optionPrintTwo);
-        this.optionsRepository.save(optionPrintThree);
-
-
-        ProductVariant productVariantSilkHoodieSize = new ProductVariant(
-                "Grootte",
-                "De grootte van een hoodie",
-                product2
-        );
-
-        ProductVariant productVariantSilkHoodieColor = new ProductVariant(
-                "Kleur",
-                "De kleur van de hoodie",
-                product2
-        );
-
-        ProductVariant productVariantSilkHoodiePrint = new ProductVariant(
-                "Print",
-                "De print van de hoodie",
-                product2
-        );
-
-        this.productVariantRepository.save(productVariantSilkHoodieSize);
-
-        this.productVariantRepository.save(productVariantSilkHoodieColor);
-
-        this.productVariantRepository.save(productVariantSilkHoodiePrint);
-
-
-        Options optionSilkHoodieS = new Options("S", 100, productVariantSilkHoodieSize);
-        Options optionSilkHoodieM = new Options("M", 150, productVariantSilkHoodieSize);
-        Options optionSilkHoodieL = new Options("L", 200, productVariantSilkHoodieSize);
-        Options optionSilkHoodieXL = new Options("XL", 300, productVariantSilkHoodieSize);
-
-        Options optionSilkHoodieRed = new Options("Red", 100, productVariantSilkHoodieColor);
-        Options optionSilkHoodieBlue = new Options("Blue", 150, productVariantSilkHoodieColor);
-        Options optionSilkHoodieBlack = new Options("Black", 200, productVariantSilkHoodieColor);
-
-        Options optionSilkHoodiePrintOne = new Options("Grote Print",200 , productVariantSilkHoodiePrint);
-        Options optionSilkHoodiePrintTwo = new Options("Medium Print", 100, productVariantSilkHoodiePrint);
-        Options optionSilkHoodiePrintThree = new Options("Small Print", 50, productVariantSilkHoodiePrint);
-
-
-
-        this.optionsRepository.save(optionSilkHoodieS);
-        this.optionsRepository.save(optionSilkHoodieM);
-        this.optionsRepository.save(optionSilkHoodieL);
-        this.optionsRepository.save(optionSilkHoodieXL);
-
-
-        this.optionsRepository.save(optionSilkHoodieRed);
-        this.optionsRepository.save(optionSilkHoodieBlue);
-        this.optionsRepository.save(optionSilkHoodieBlack);
-
-        this.optionsRepository.save(optionSilkHoodiePrintOne);
-        this.optionsRepository.save(optionSilkHoodiePrintTwo);
-        this.optionsRepository.save(optionSilkHoodiePrintThree);
-
-
+                for (String optionName : options[i]) {
+                    Options option = new Options(optionName, 100 + i * 50, variant);
+                    this.optionsRepository.save(option);
+                }
+            }
+        }
     }
 
     private void seedUser(){
@@ -200,7 +100,7 @@ public class Seeder {
         userRepository.save(customUser);
 
         CustomUser customUserAdmin = new CustomUser();
-        customUserAdmin.setEmail("bob@adminluxuryenterprise.com");
+        customUserAdmin.setEmail("bob@bobbyluxuryenterprise.com");
         customUserAdmin.setPassword(new BCryptPasswordEncoder().encode("k2C^QNP!dnx4ft"));
         customUserAdmin.setRole("ROLE_ADMIN");
         userRepository.save(customUserAdmin);
