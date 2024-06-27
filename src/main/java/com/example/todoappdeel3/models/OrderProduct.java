@@ -19,6 +19,9 @@ public class OrderProduct {
 
     private String imageUrl;
 
+    private String name;
+
+    private double price;
     @OneToMany
     private List<OrderProductVariant> orderProductVariants;
 
@@ -36,6 +39,8 @@ public class OrderProduct {
     public OrderProduct(Product product) {
         this.product = product;
         this.imageUrl = product.getImageURL();
+        this.name = product.getName();
+        this.price = product.getPrice();
 
     }
 
@@ -83,5 +88,21 @@ public class OrderProduct {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

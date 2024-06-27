@@ -111,17 +111,6 @@ public class OrderDAO {
             orderProducts.add(orderProduct);
         }
 
-//        for(OrderProduct orderProduct : orderProducts ) {
-//            orderProductRepository.saveAndFlush(orderProduct);
-//        }
-//
-//        for(OrderProductVariant orderProductVariant : totalOrderProductVariantList) {
-//            orderProductVariantRepository.saveAndFlush(orderProductVariant);
-//        }
-//
-//        for(OrderOptions orderOptions : totalOrderOptionsList){
-//            orderOptionsRepository.saveAndFlush(orderOptions);
-//        }
 
 
         System.out.println("test buiten de for loop");
