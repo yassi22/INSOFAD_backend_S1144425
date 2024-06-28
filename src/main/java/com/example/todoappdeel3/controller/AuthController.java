@@ -70,8 +70,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody AuthenticationDTO body) {
-        System.out.println(body.email);
-        System.out.println(body.password);
         try {
             UsernamePasswordAuthenticationToken authInputToken =
                     new UsernamePasswordAuthenticationToken(body.email, body.password);
