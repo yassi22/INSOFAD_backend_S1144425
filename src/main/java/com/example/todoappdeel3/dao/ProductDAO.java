@@ -81,6 +81,7 @@ public class ProductDAO {
     }
 
 
+
     public List<Product> getProductVariants(List<Long> ids){
         return this.productRepository.findAllById(ids);
     }

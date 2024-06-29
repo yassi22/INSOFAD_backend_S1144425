@@ -81,10 +81,10 @@ public class OrderDAO {
             System.out.println(productJson);
             Product product = productDAO.getProduct(productJson.id);
 
-            OrderProduct orderProduct = new OrderProduct(product);
 
-            productDAO.changeQuantityProduct(productJson.id);
+              OrderProduct orderProduct = new OrderProduct(product);
 
+              productDAO.changeQuantityProduct(productJson.id);
 
             productList.add(product);
             List<OrderProductVariant> orderProductVariantList = new ArrayList<>();
@@ -110,10 +110,6 @@ public class OrderDAO {
             orderProduct.setOrderProductVariants(orderProductVariantList);
             orderProducts.add(orderProduct);
         }
-
-
-
-        System.out.println("test buiten de for loop");
 
 
         Order order = new Order(productService.makeName(productList), calculatePrice(productList, totalOrderOptionsList), LocalDateTime.now());
