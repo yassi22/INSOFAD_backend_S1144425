@@ -27,10 +27,6 @@ public class OrderOptions {
     @JsonBackReference
     private List<Order> order;
 
-//    @ManyToMany
-//    @JsonManagedReference
-//    private List<OrderProduct> orderProductList;
-
 
     public OrderOptions(String name, double added_price, OrderProductVariant orderProductVariant) {
         this.name = name;
@@ -75,13 +71,7 @@ public class OrderOptions {
         this.order = order;
     }
 
-//    public List<OrderProduct> getOrderProductList() {
-//        return orderProductList;
-//    }
-//
-//    public void setOrderProductList(List<OrderProduct> orderProductList) {
-//        this.orderProductList = orderProductList;
-//    }
+
 
     public OrderProductVariant getOrderProductVariant() {
         return orderProductVariant;
