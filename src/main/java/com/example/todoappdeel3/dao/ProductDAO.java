@@ -81,7 +81,6 @@ public class ProductDAO {
     }
 
 
-
     public List<Product> getProductVariants(List<Long> ids){
         return this.productRepository.findAllById(ids);
     }
@@ -90,29 +89,6 @@ public class ProductDAO {
         return this.productRepository.findAllById(ids);
     }
 
-
-//    @Transactional
-//    public void createProduct(ProductDTO productDTO){
-//        Optional<Category> category = this.categoryRepository.findById(productDTO.categoryId);
-//        if (category.isPresent()){
-//            Product product = new Product(
-//                    productDTO.name,
-//                    productDTO.description,
-//                    productDTO.price,
-//                    category.get(),
-//                    productDTO.durability,
-//                    productDTO.fitting,
-//                    productDTO.imageUrl,
-//                    productDTO.quantity
-//            );
-//            this.productRepository.save(product);
-//            return;
-//        }
-//
-//        throw new ResponseStatusException(
-//                HttpStatus.NOT_FOUND, "Category not found"
-//        );
-//    }
 
     @Transactional
     public void createProduct(@NotNull Product product){
@@ -132,28 +108,11 @@ public class ProductDAO {
         }
     }
 
-    public void checkProduct(Long id) {
-        this.toggleProduct(id, true);
-    }
-
-    public void uncheckProduct(Long id) {
-        this.toggleProduct(id, false);
-    }
-
-    private void toggleProduct(Long id, boolean value){
-        Optional<Product> product = this.productRepository.findById(id);
-
-        if (product.isPresent()){
-            product.get().setFinished(value);
-            this.productRepository.save(product.get());
-        }
-    }
-
     public void deleteById(Long id) {
         this.productRepository.deleteById(id);
     }
 
-    public void deleteVariantOptions( DeleteVariantOptionsDTO deleteVariantOptionsDTO){
+    public void deleteVariantOptions(DeleteVariantOptionsDTO deleteVariantOptionsDTO){
 
         for(long options_id : deleteVariantOptionsDTO.option_ids) {
             this.optionsRepository.deleteById(options_id);
