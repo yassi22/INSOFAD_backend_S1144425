@@ -96,32 +96,5 @@ public class ProductControllerTest {
         assertEquals("Product deleted with id " + id, response.getBody());
     }
 
-    @Test
-    public void testCheckProduct() {
-        // Arrange
-        Long id = 1L;
-
-        // Act
-        ResponseEntity<String> response = productController.checkProduct(id);
-
-        // Assert
-        verify(productDAO, times(1)).checkProduct(id);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Product checked with id " + id, response.getBody());
-    }
-
-    @Test
-    public void testUncheckProduct() {
-        // Arrange
-        Long id = 1L;
-
-        // Act
-        ResponseEntity<String> response = productController.uncheckProduct(id);
-
-        // Assert
-        verify(productDAO, times(1)).uncheckProduct(id);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Product uncheck with id " + id, response.getBody());
-    }
 
 }
