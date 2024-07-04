@@ -66,7 +66,6 @@ public class ProductDAO {
     }
 
 
-
     public boolean changeQuantityProduct(long id ){
         Product product = getProduct(id);
 
